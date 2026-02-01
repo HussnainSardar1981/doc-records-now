@@ -93,22 +93,22 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
     <Card className="bg-slate-700/30 border-slate-600/50">
       <CardContent className="p-4 space-y-4">
         {/* Inmate Info */}
-        <div className="flex justify-between items-start">
-          <div>
-            <h3 className="text-white font-semibold text-lg">{name}</h3>
-            <div className="flex flex-wrap gap-3 mt-2 text-sm text-slate-300">
+        <div className="flex justify-between items-start gap-3">
+          <div className="flex-1 min-w-0">
+            <h3 className="text-white font-semibold text-lg break-words">{name}</h3>
+            <div className="flex flex-wrap gap-2 sm:gap-3 mt-2 text-xs sm:text-sm text-slate-300">
               <div className="flex items-center gap-1">
-                <Hash className="w-3.5 h-3.5" />
+                <Hash className="w-3.5 h-3.5 flex-shrink-0" />
                 <span>{docNumber}</span>
               </div>
-              <div className="flex items-center gap-1">
-                <MapPin className="w-3.5 h-3.5" />
-                <span>{location}</span>
+              <div className="flex items-center gap-1 min-w-0">
+                <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
+                <span className="truncate">{location}</span>
               </div>
-              {age && <span>Age {age}</span>}
+              {age && <span className="whitespace-nowrap">Age {age}</span>}
             </div>
           </div>
-          <Badge variant={status === 'In Custody' ? 'destructive' : 'secondary'}>
+          <Badge variant={status === 'In Custody' ? 'destructive' : 'secondary'} className="flex-shrink-0 text-xs">
             {status}
           </Badge>
         </div>
@@ -130,25 +130,25 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
             <div className="space-y-2">
               {/* Phone Records */}
               <div>
-                <div className="flex items-center justify-between p-3 bg-slate-800/50 rounded-lg">
+                <div className="p-3 bg-slate-800/50 rounded-lg space-y-3">
                   <div className="flex items-center gap-3">
-                    <Phone className="w-5 h-5 text-blue-400" />
-                    <div>
+                    <Phone className="w-5 h-5 text-blue-400 flex-shrink-0" />
+                    <div className="flex-1">
                       <div className="text-white font-medium">Phone Records</div>
                       {availability?.phone_records && (
                         <div className="mt-1">{getAvailabilityBadge(availability.phone_records)}</div>
                       )}
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-between gap-2 flex-wrap sm:flex-nowrap">
                     {!availability?.phone_records?.already_purchased && (
-                      <span className="text-white font-semibold">$29.99</span>
+                      <span className="text-white font-semibold text-lg">$29.99</span>
                     )}
                     {availability?.phone_records?.already_purchased ? (
                       <Button
                         size="sm"
                         onClick={() => navigate('/my-records', { state: { docNumber, recordType: 'phone' } })}
-                        className="bg-blue-600 hover:bg-blue-700"
+                        className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto"
                       >
                         View Records
                       </Button>
@@ -157,7 +157,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
                         size="sm"
                         onClick={() => handleToggleRecord('telephone')}
                         variant={isPhoneSelected ? 'secondary' : 'default'}
-                        className={isPhoneSelected ? 'bg-green-600 hover:bg-green-700' : ''}
+                        className={`w-full sm:w-auto ${isPhoneSelected ? 'bg-green-600 hover:bg-green-700' : ''}`}
                       >
                         {isPhoneSelected ? 'Selected' : 'Select'}
                       </Button>
@@ -171,25 +171,25 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
 
               {/* Visitor Records */}
               <div>
-                <div className="flex items-center justify-between p-3 bg-slate-800/50 rounded-lg">
+                <div className="p-3 bg-slate-800/50 rounded-lg space-y-3">
                   <div className="flex items-center gap-3">
-                    <Users className="w-5 h-5 text-purple-400" />
-                    <div>
+                    <Users className="w-5 h-5 text-purple-400 flex-shrink-0" />
+                    <div className="flex-1">
                       <div className="text-white font-medium">Visitor Records</div>
                       {availability?.visitor_records && (
                         <div className="mt-1">{getAvailabilityBadge(availability.visitor_records)}</div>
                       )}
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-between gap-2 flex-wrap sm:flex-nowrap">
                     {!availability?.visitor_records?.already_purchased && (
-                      <span className="text-white font-semibold">$29.99</span>
+                      <span className="text-white font-semibold text-lg">$29.99</span>
                     )}
                     {availability?.visitor_records?.already_purchased ? (
                       <Button
                         size="sm"
                         onClick={() => navigate('/my-records', { state: { docNumber, recordType: 'visitor' } })}
-                        className="bg-blue-600 hover:bg-blue-700"
+                        className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto"
                       >
                         View Records
                       </Button>
@@ -198,7 +198,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
                         size="sm"
                         onClick={() => handleToggleRecord('visitor')}
                         variant={isVisitorSelected ? 'secondary' : 'default'}
-                        className={isVisitorSelected ? 'bg-green-600 hover:bg-green-700' : ''}
+                        className={`w-full sm:w-auto ${isVisitorSelected ? 'bg-green-600 hover:bg-green-700' : ''}`}
                       >
                         {isVisitorSelected ? 'Selected' : 'Select'}
                       </Button>
