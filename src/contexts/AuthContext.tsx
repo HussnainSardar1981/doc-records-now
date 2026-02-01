@@ -78,7 +78,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     await supabase.auth.signOut();
   };
 
-  const handleInactivityTimeout = async () => {
+  const handleInactivityTimeout = React.useCallback(async () => {
     console.log('Signing out due to inactivity');
     await signOut();
     toast({
@@ -87,7 +87,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       variant: "destructive",
       duration: 3000,
     });
-  };
+  }, [toast]);
 
   // Extended inactivity timer to 30 minutes (1800000ms) for better user experience
   useInactivityTimer({

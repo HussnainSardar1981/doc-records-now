@@ -8,8 +8,6 @@ interface HeaderProps {
 }
 
 const Header = ({ selectedState = null }: HeaderProps) => {
-  console.log('Header rendering with selectedState:', selectedState);
-  
   return (
     <header className="bg-slate-900/95 backdrop-blur-sm border-b border-slate-700 sticky top-0 z-50">
       <div className="container mx-auto px-3 sm:px-4 md:px-6 py-3 md:py-4">
