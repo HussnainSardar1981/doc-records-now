@@ -172,7 +172,7 @@ export const VisitorRecordDisplay = ({
                   <div className="flex justify-between items-start">
                     <div>
                       <p className="text-white font-medium">{visitor.name || 'N/A'}</p>
-                      <p className="text-slate-400 text-sm">{visitor.relationship || 'N/A'}</p>
+                      <p className="text-slate-400 text-sm">{visitor.relationship || visitor.status || 'N/A'}</p>
                     </div>
                     {visitor.approval_date && (
                       <Badge variant="outline" className="text-xs">
