@@ -147,7 +147,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
                     {availability?.phone_records?.already_purchased ? (
                       <Button
                         size="sm"
-                        onClick={() => navigate('/my-records')}
+                        onClick={() => navigate('/my-records', { state: { docNumber, recordType: 'phone' } })}
                         className="bg-blue-600 hover:bg-blue-700"
                       >
                         View Records
@@ -188,7 +188,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
                     {availability?.visitor_records?.already_purchased ? (
                       <Button
                         size="sm"
-                        onClick={() => navigate('/my-records')}
+                        onClick={() => navigate('/my-records', { state: { docNumber, recordType: 'visitor' } })}
                         className="bg-blue-600 hover:bg-blue-700"
                       >
                         View Records
