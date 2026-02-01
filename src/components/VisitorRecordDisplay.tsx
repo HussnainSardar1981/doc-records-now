@@ -174,13 +174,15 @@ export const VisitorRecordDisplay = ({
               {approvedVisitors.map((visitor, index) => (
                 <div key={index} className="bg-slate-700/30 p-4 rounded-lg border border-slate-600/50">
                   <div className="flex justify-between items-start">
-                    <div>
+                    <div className="w-full">
                       <p className="text-white font-medium">{visitor.name || 'N/A'}</p>
-                      <p className="text-slate-400 text-sm">{visitor.relationship || visitor.status || 'N/A'}</p>
+                      {visitor.address && (
+                        <p className="text-slate-400 text-sm mt-1">{visitor.address}</p>
+                      )}
                     </div>
                     {visitor.approval_date && (
                       <Badge variant="outline" className="text-xs">
-                        Approved: {new Date(visitor.approval_date).toLocaleDateString()}
+                        {new Date(visitor.approval_date).toLocaleDateString()}
                       </Badge>
                     )}
                   </div>
