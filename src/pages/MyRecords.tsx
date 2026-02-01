@@ -7,7 +7,7 @@ import { PhoneRecordDisplay } from '@/components/PhoneRecordDisplay';
 import { VisitorRecordDisplay } from '@/components/VisitorRecordDisplay';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useAuth } from '@/contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -142,7 +142,72 @@ const OrderCard = ({ order }: { order: any }) => {
 const MyRecords = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const { orders, loading, error } = useUserOrders();
+
+  // Get DOC number from navigation state (for free access users)
+  const navState = location.state as { docNumber?: string; recordType?: string } | null;
+  const [freeAccessRecord, setFreeAccessRecord] = useState<any>(null);
+  const [loadingFreeAccess, setLoadingFreeAccess] = useState(false);
+
+  // Fetch records for free access users
+  useEffect(() => {
+    const fetchFreeAccessRecords = async () => {
+      if (!user || !navState?.docNumber) return;
+
+      setLoadingFreeAccess(true);
+      try {
+        // Check if user has free access
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('has_free_access')
+          .eq('id', user.id)
+          .single() as { data: { has_free_access: boolean } | null };
+
+        if (!profile?.has_free_access) {
+          setLoadingFreeAccess(false);
+          return;
+        }
+
+        // Fetch inmate info
+        const { data: inmate } = await supabase
+          .from('inmates')
+          .select('*')
+          .eq('doc_number', navState.docNumber)
+          .single();
+
+        if (!inmate) {
+          setLoadingFreeAccess(false);
+          return;
+        }
+
+        // Fetch phone and visitor records
+        const { data: phoneRecord } = await supabase
+          .from('phone_records')
+          .select('*')
+          .eq('inmate_id', inmate.id)
+          .maybeSingle();
+
+        const { data: visitorRecord } = await supabase
+          .from('visitation_records')
+          .select('*')
+          .eq('inmate_id', inmate.id)
+          .maybeSingle();
+
+        setFreeAccessRecord({
+          inmate,
+          phoneRecord,
+          visitorRecord
+        });
+      } catch (err) {
+        console.error('Error fetching free access records:', err);
+      } finally {
+        setLoadingFreeAccess(false);
+      }
+    };
+
+    fetchFreeAccessRecords();
+  }, [user, navState?.docNumber]);
 
   if (!user) {
     return (
@@ -195,7 +260,46 @@ const MyRecords = () => {
           </Alert>
         )}
 
-        {!loading && !error && orders.length === 0 && (
+        {/* Free access record display */}
+        {loadingFreeAccess && (
+          <div className="space-y-6">
+            <LoadingCard rows={4} />
+          </div>
+        )}
+
+        {!loadingFreeAccess && freeAccessRecord && (
+          <Card className="bg-slate-800/50 border-slate-700 mb-6">
+            <CardHeader>
+              <CardTitle className="text-white mb-2">
+                Records for DOC #{freeAccessRecord.inmate.doc_number}
+              </CardTitle>
+              <p className="text-slate-300">{freeAccessRecord.inmate.full_name}</p>
+              <Badge className="bg-emerald-600 w-fit mt-2">Free Access</Badge>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {freeAccessRecord.phoneRecord && (
+                <PhoneRecordDisplay
+                  record={freeAccessRecord.phoneRecord}
+                  isUnlocked={true}
+                  fulfillmentStatus="fulfilled"
+                  availableDate={freeAccessRecord.inmate.phone_records_available_date}
+                  docNumber={freeAccessRecord.inmate.doc_number}
+                />
+              )}
+              {freeAccessRecord.visitorRecord && (
+                <VisitorRecordDisplay
+                  record={freeAccessRecord.visitorRecord}
+                  isUnlocked={true}
+                  fulfillmentStatus="fulfilled"
+                  availableDate={freeAccessRecord.inmate.visitor_records_available_date}
+                  docNumber={freeAccessRecord.inmate.doc_number}
+                />
+              )}
+            </CardContent>
+          </Card>
+        )}
+
+        {!loading && !error && !freeAccessRecord && orders.length === 0 && (
           <Card className="bg-slate-800/50 border-slate-700">
             <CardContent className="py-12 text-center">
               <ShoppingBag className="w-16 h-16 text-slate-500 mx-auto mb-4" />
