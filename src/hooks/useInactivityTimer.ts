@@ -18,7 +18,6 @@ export const useInactivityTimer = ({ timeout, onTimeout, enabled = true }: UseIn
     }
 
     timeoutRef.current = setTimeout(() => {
-      console.log('User inactive for', timeout / 1000, 'seconds. Logging out...');
       onTimeout();
     }, timeout);
   }, [timeout, onTimeout, enabled]);

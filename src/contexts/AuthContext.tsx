@@ -79,7 +79,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const handleInactivityTimeout = React.useCallback(async () => {
-    console.log('Signing out due to inactivity');
     await signOut();
     toast({
       title: "Session Expired",

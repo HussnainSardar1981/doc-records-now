@@ -17,7 +17,6 @@ export const useInmateSearchResults = () => {
 
   const searchInmates = async (query: string, state: string) => {
     if (!query || !state) {
-      console.log('❌ Search cancelled: missing query or state', { query, state });
       updateSearchResults([], false, null);
       return;
     }
@@ -39,10 +38,9 @@ export const useInmateSearchResults = () => {
     }
 
     updateSearchResults([], true, null);
-    
+
     const searchType = isNameSearch ? 'name' : 'DOC number';
-    console.log(`🚀 Starting ${searchType} search for "${query}" in ${state}`);
-    
+
     toast({
       title: "Searching...",
       description: `Searching ${state} records by ${searchType}: ${query}`,
@@ -74,13 +72,6 @@ export const useInmateSearchResults = () => {
         console.error('❌ JSON parse error:', parseError);
         throw new Error('Server returned invalid JSON response');
       }
-      
-      console.log('📨 Parsed API response:', { 
-        data,
-        hasData: !!data,
-        hasResults: !!data?.results,
-        resultsLength: data?.results?.length || 0
-      });
 
       if (data?.error) {
         console.error('🚨 Data error from API:', data.error);
@@ -97,18 +88,10 @@ export const useInmateSearchResults = () => {
         age: item.age,
         vineLink: item.vineLink
       })) || [];
-      
-      console.log('✅ Processed search results:', {
-        count: searchResults.length,
-        results: searchResults
-      });
-      
+
       updateSearchResults(searchResults, false, null);
-      
-      console.log(`🏁 Search completed for "${query}" in ${state}: ${searchResults.length} results found`);
-      
+
       if (searchResults.length === 0) {
-        console.log(`ℹ️ No results found for ${searchType} "${query}" in ${state}`);
         toast({
           title: "No Results Found",
           description: `No records found for ${searchType} ${query} in ${state}`,
@@ -116,7 +99,6 @@ export const useInmateSearchResults = () => {
           duration: 3000,
         });
       } else {
-        console.log(`🎉 Search successful! Found ${searchResults.length} result(s)`);
         toast({
           title: "Search Successful",
           description: `Found ${searchResults.length} record(s) for ${searchType} ${query}`,
