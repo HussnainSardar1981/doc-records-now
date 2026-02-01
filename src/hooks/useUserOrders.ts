@@ -43,7 +43,7 @@ export const useUserOrders = () => {
 
   useEffect(() => {
     fetchOrders();
-  }, [user]);
+  }, [user?.id]);
 
   return {
     orders,
