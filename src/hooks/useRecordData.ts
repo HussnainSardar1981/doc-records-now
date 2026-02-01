@@ -16,11 +16,32 @@ export const useRecordData = ({ phoneRecordId, visitorRecordId, recordsUnlocked 
   const [visitorRecord, setVisitorRecord] = useState<VisitorRecord | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [hasFreeAccess, setHasFreeAccess] = useState(false);
+
+  // Check if user has free access on mount
+  useEffect(() => {
+    const checkFreeAccess = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('has_free_access')
+        .eq('id', user.id)
+        .single() as { data: { has_free_access: boolean } | null };
+
+      if (profile?.has_free_access) {
+        setHasFreeAccess(true);
+      }
+    };
+
+    checkFreeAccess();
+  }, []);
 
   useEffect(() => {
     const fetchRecords = async () => {
-      // Don't fetch if records aren't unlocked
-      if (!recordsUnlocked) {
+      // Allow access if records are unlocked OR user has free access
+      if (!recordsUnlocked && !hasFreeAccess) {
         setPhoneRecord(null);
         setVisitorRecord(null);
         return;
@@ -70,7 +91,7 @@ export const useRecordData = ({ phoneRecordId, visitorRecordId, recordsUnlocked 
     };
 
     fetchRecords();
-  }, [phoneRecordId, visitorRecordId, recordsUnlocked]);
+  }, [phoneRecordId, visitorRecordId, recordsUnlocked, hasFreeAccess]);
 
   return {
     phoneRecord,

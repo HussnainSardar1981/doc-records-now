@@ -76,27 +76,45 @@ serve(async (req) => {
 
     console.log('Inmate found:', inmate.full_name, '- Phone:', inmate.phone_records_available, 'Visitor:', inmate.visitor_records_available)
 
-    // Check if user already purchased records for this inmate
+    // Check if user has free access or already purchased records for this inmate
     let phoneAlreadyPurchased = false
     let visitorAlreadyPurchased = false
     let existingOrderId = null
+    let hasFreeAccess = false
 
     if (currentUserId) {
-      console.log('Checking if user', currentUserId, 'already purchased records for', doc_number)
-      const { data: existingOrder } = await supabaseClient
-        .from('orders')
-        .select('id, phone_record_id, visitor_record_id, records_unlocked')
-        .eq('user_id', currentUserId)
-        .eq('inmate_doc_number', doc_number)
-        .eq('payment_status', 'paid')
+      // First check if user has free access
+      console.log('Checking if user', currentUserId, 'has free access')
+      const { data: profile } = await supabaseClient
+        .from('profiles')
+        .select('has_free_access')
+        .eq('id', currentUserId)
         .maybeSingle()
 
-      if (existingOrder) {
-        existingOrderId = existingOrder.id
-        // Check which specific record types were purchased
-        phoneAlreadyPurchased = !!existingOrder.phone_record_id && existingOrder.records_unlocked
-        visitorAlreadyPurchased = !!existingOrder.visitor_record_id && existingOrder.records_unlocked
-        console.log('User already purchased - Order ID:', existingOrderId, 'Phone:', phoneAlreadyPurchased, 'Visitor:', visitorAlreadyPurchased)
+      if (profile?.has_free_access) {
+        hasFreeAccess = true
+        // Grant access to all record types for free access users
+        phoneAlreadyPurchased = inmate.phone_records_available
+        visitorAlreadyPurchased = inmate.visitor_records_available
+        console.log('User has free access - granting access to all available records')
+      } else {
+        // Check for existing purchase
+        console.log('Checking if user', currentUserId, 'already purchased records for', doc_number)
+        const { data: existingOrder } = await supabaseClient
+          .from('orders')
+          .select('id, phone_record_id, visitor_record_id, records_unlocked')
+          .eq('user_id', currentUserId)
+          .eq('inmate_doc_number', doc_number)
+          .eq('payment_status', 'paid')
+          .maybeSingle()
+
+        if (existingOrder) {
+          existingOrderId = existingOrder.id
+          // Check which specific record types were purchased
+          phoneAlreadyPurchased = !!existingOrder.phone_record_id && existingOrder.records_unlocked
+          visitorAlreadyPurchased = !!existingOrder.visitor_record_id && existingOrder.records_unlocked
+          console.log('User already purchased - Order ID:', existingOrderId, 'Phone:', phoneAlreadyPurchased, 'Visitor:', visitorAlreadyPurchased)
+        }
       }
     }
 
