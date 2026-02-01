@@ -128,29 +128,31 @@ export const VisitorRecordDisplay = ({
   return (
     <Card className="bg-slate-800/50 border-slate-700">
       <CardHeader>
-        <div className="flex items-center justify-between">
-          <CardTitle className="text-white flex items-center gap-2">
-            <Users className="w-5 h-5" />
-            Visitor Records
-          </CardTitle>
-          <div className="flex items-center gap-2">
-            <Badge className="bg-green-600">Unlocked</Badge>
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={handleDownloadPDF}
-              className="border-purple-500 text-purple-400 hover:bg-purple-500/20"
-            >
-              <Download className="w-4 h-4 mr-1" />
-              PDF
-            </Button>
+        <div className="space-y-3">
+          <div className="flex items-start justify-between gap-2 flex-wrap sm:flex-nowrap">
+            <CardTitle className="text-white flex items-center gap-2 flex-shrink-0">
+              <Users className="w-5 h-5" />
+              <span className="text-base sm:text-lg">Visitor Records</span>
+            </CardTitle>
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <Badge className="bg-green-600 text-xs">Unlocked</Badge>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={handleDownloadPDF}
+                className="border-purple-500 text-purple-400 hover:bg-purple-500/20 text-xs sm:text-sm"
+              >
+                <Download className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+                PDF
+              </Button>
+            </div>
           </div>
+          {record.last_updated && (
+            <p className="text-slate-400 text-xs sm:text-sm">
+              Last Updated: {new Date(record.last_updated).toLocaleDateString()}
+            </p>
+          )}
         </div>
-        {record.last_updated && (
-          <p className="text-slate-400 text-sm">
-            Last Updated: {new Date(record.last_updated).toLocaleDateString()}
-          </p>
-        )}
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="grid grid-cols-2 gap-4">

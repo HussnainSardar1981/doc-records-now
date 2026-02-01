@@ -121,64 +121,68 @@ export const PhoneRecordDisplay = ({
   return (
     <Card className="bg-slate-800/50 border-slate-700">
       <CardHeader>
-        <div className="flex items-center justify-between">
-          <CardTitle className="text-white flex items-center gap-2">
-            <Phone className="w-5 h-5" />
-            Phone Records
-          </CardTitle>
-          <div className="flex items-center gap-2">
-            <Badge className="bg-green-600">Unlocked</Badge>
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={handleDownloadPDF}
-              className="border-blue-500 text-blue-400 hover:bg-blue-500/20"
-            >
-              <Download className="w-4 h-4 mr-1" />
-              PDF
-            </Button>
+        <div className="space-y-3">
+          <div className="flex items-start justify-between gap-2 flex-wrap sm:flex-nowrap">
+            <CardTitle className="text-white flex items-center gap-2 flex-shrink-0">
+              <Phone className="w-5 h-5" />
+              <span className="text-base sm:text-lg">Phone Records</span>
+            </CardTitle>
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <Badge className="bg-green-600 text-xs">Unlocked</Badge>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={handleDownloadPDF}
+                className="border-blue-500 text-blue-400 hover:bg-blue-500/20 text-xs sm:text-sm"
+              >
+                <Download className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+                PDF
+              </Button>
+            </div>
           </div>
+          {record.last_updated && (
+            <p className="text-slate-400 text-xs sm:text-sm">
+              Last Updated: {new Date(record.last_updated).toLocaleDateString()}
+            </p>
+          )}
         </div>
-        {record.last_updated && (
-          <p className="text-slate-400 text-sm">
-            Last Updated: {new Date(record.last_updated).toLocaleDateString()}
-          </p>
-        )}
       </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-slate-700/30 p-4 rounded-lg">
-            <p className="text-slate-400 text-sm mb-1">Total Calls</p>
-            <p className="text-white text-3xl font-bold">{record.total_calls}</p>
+      <CardContent className="space-y-4 sm:space-y-6">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4">
+          <div className="bg-slate-700/30 p-3 sm:p-4 rounded-lg">
+            <p className="text-slate-400 text-xs sm:text-sm mb-1">Total Calls</p>
+            <p className="text-white text-2xl sm:text-3xl font-bold">{record.total_calls}</p>
           </div>
-          <div className="bg-slate-700/30 p-4 rounded-lg">
-            <p className="text-slate-400 text-sm mb-1">Approved Numbers</p>
-            <p className="text-white text-3xl font-bold">{record.total_approved_numbers}</p>
+          <div className="bg-slate-700/30 p-3 sm:p-4 rounded-lg">
+            <p className="text-slate-400 text-xs sm:text-sm mb-1">Approved Numbers</p>
+            <p className="text-white text-2xl sm:text-3xl font-bold">{record.total_approved_numbers}</p>
           </div>
         </div>
 
         {callHistory.length > 0 && isSummary && (
           <div>
-            <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
-              <Clock className="w-4 h-4" />
-              Top Dialed Numbers ({callHistory.length})
+            <h3 className="text-white font-semibold mb-3 flex items-center gap-2 text-sm sm:text-base">
+              <Clock className="w-4 h-4 flex-shrink-0" />
+              <span>Top Dialed Numbers ({callHistory.length})</span>
             </h3>
             <div className="space-y-2 max-h-96 overflow-y-auto">
               {callHistory.map((call, index) => (
-                <div key={index} className="bg-slate-700/30 p-4 rounded-lg border border-slate-600/50">
-                  <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div>
-                      <span className="text-slate-400">Number:</span>
-                      <span className="text-white ml-2">{call.dialed_number || 'N/A'}</span>
-                    </div>
-                    <div>
-                      <span className="text-slate-400">Calls:</span>
-                      <span className="text-white ml-2">{call.call_count ?? 0}</span>
+                <div key={index} className="bg-slate-700/30 p-3 sm:p-4 rounded-lg border border-slate-600/50">
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-start gap-2 flex-wrap">
+                      <div className="flex-1 min-w-0">
+                        <span className="text-slate-400 text-xs sm:text-sm block mb-1">Number:</span>
+                        <span className="text-white text-sm sm:text-base font-mono break-all">{call.dialed_number || 'N/A'}</span>
+                      </div>
+                      <div className="flex-shrink-0 text-right">
+                        <span className="text-slate-400 text-xs sm:text-sm block mb-1">Calls:</span>
+                        <span className="text-white text-sm sm:text-base font-semibold">{call.call_count ?? 0}</span>
+                      </div>
                     </div>
                     {call.site && (
-                      <div className="col-span-2">
-                        <span className="text-slate-400">Site:</span>
-                        <span className="text-white ml-2">{call.site}</span>
+                      <div className="pt-2 border-t border-slate-600/30">
+                        <span className="text-slate-400 text-xs sm:text-sm">Site: </span>
+                        <span className="text-white text-xs sm:text-sm">{call.site}</span>
                       </div>
                     )}
                   </div>
