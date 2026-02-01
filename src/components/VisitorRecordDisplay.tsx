@@ -17,7 +17,11 @@ interface ApprovedVisitor {
 
 interface Visit {
   date?: string;
+  start_time?: string;
   visitor_name?: string;
+  visitor_age?: number | string;
+  relationship?: string;
+  visit_type?: string;
   check_in?: string;
   check_out?: string;
   duration?: string;
@@ -200,12 +204,32 @@ export const VisitorRecordDisplay = ({
                       <span className="text-slate-400">Visitor:</span>
                       <span className="text-white ml-2">{visit.visitor_name || 'N/A'}</span>
                     </div>
-                    <div>
-                      <span className="text-slate-400">Date:</span>
-                      <span className="text-white ml-2">
-                        {visit.date ? new Date(visit.date).toLocaleDateString() : 'N/A'}
-                      </span>
-                    </div>
+                    {visit.visitor_age && (
+                      <div>
+                        <span className="text-slate-400">Age:</span>
+                        <span className="text-white ml-2">{visit.visitor_age}</span>
+                      </div>
+                    )}
+                    {visit.relationship && (
+                      <div>
+                        <span className="text-slate-400">Relationship:</span>
+                        <span className="text-white ml-2">{visit.relationship}</span>
+                      </div>
+                    )}
+                    {visit.start_time && (
+                      <div>
+                        <span className="text-slate-400">Visit Time:</span>
+                        <span className="text-white ml-2">
+                          {new Date(visit.start_time).toLocaleString()}
+                        </span>
+                      </div>
+                    )}
+                    {visit.visit_type && (
+                      <div>
+                        <span className="text-slate-400">Visit Type:</span>
+                        <span className="text-white ml-2">{visit.visit_type}</span>
+                      </div>
+                    )}
                     {visit.check_in && (
                       <div>
                         <span className="text-slate-400">Check In:</span>
