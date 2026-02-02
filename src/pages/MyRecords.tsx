@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { FileText, Loader2, ShoppingBag, AlertCircle } from 'lucide-react';
+import { FileText, Loader2, ShoppingBag, AlertCircle, ArrowLeft } from 'lucide-react';
 import { useUserOrders } from '@/hooks/useUserOrders';
 import { useRecordData } from '@/hooks/useRecordData';
 import { PhoneRecordDisplay } from '@/components/PhoneRecordDisplay';
@@ -211,7 +211,7 @@ const MyRecords = () => {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 flex flex-col">
+      <div className="min-h-screen bg-gradient-to-br from-[#00063d] to-[#0a1854] flex flex-col">
         <Header />
         <div className="container mx-auto px-6 py-12 flex-1">
           <Alert className="bg-red-900/20 border-red-500">
@@ -222,7 +222,7 @@ const MyRecords = () => {
           </Alert>
           <Button
             onClick={() => navigate('/login')}
-            className="mt-4 bg-blue-600 hover:bg-blue-700"
+            className="mt-4 bg-[#00063d] hover:bg-[#0a1854]"
           >
             Log In
           </Button>
@@ -233,10 +233,18 @@ const MyRecords = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-[#00063d] to-[#0a1854] flex flex-col">
       <Header />
       <div className="container mx-auto px-6 py-12 flex-1">
         <div className="mb-8">
+          <Button
+            onClick={() => navigate('/')}
+            variant="ghost"
+            className="mb-4 text-slate-300 hover:text-white hover:bg-slate-700/50"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Search
+          </Button>
           <h1 className="text-4xl font-bold text-white mb-2 flex items-center gap-3">
             <FileText className="w-8 h-8" />
             My Records
@@ -309,7 +317,7 @@ const MyRecords = () => {
               </p>
               <Button
                 onClick={() => navigate('/')}
-                className="bg-blue-600 hover:bg-blue-700"
+                className="bg-[#00063d] hover:bg-[#0a1854]"
               >
                 Start Searching
               </Button>
