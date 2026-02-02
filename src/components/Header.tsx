@@ -15,8 +15,7 @@ const Header = ({ selectedState = null }: HeaderProps) => {
           <div className="flex items-center space-x-2 md:space-x-3 min-w-0 flex-1">
             <Shield className="w-6 h-6 md:w-8 md:h-8 text-blue-400 flex-shrink-0" />
             <div className="min-w-0">
-              <h1 className="text-lg md:text-2xl font-bold text-white truncate">Inmate Records</h1>
-              <p className="text-slate-300 text-xs md:text-sm hidden sm:block">Official DOC Database</p>
+              <h1 className="text-lg md:text-2xl font-bold text-white truncate">Inmate Insights</h1>
             </div>
           </div>
 

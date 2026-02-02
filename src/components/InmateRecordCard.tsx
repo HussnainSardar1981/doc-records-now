@@ -157,7 +157,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
                         size="sm"
                         onClick={() => handleToggleRecord('telephone')}
                         variant={isPhoneSelected ? 'secondary' : 'default'}
-                        className={`w-full sm:w-auto ${isPhoneSelected ? 'bg-green-600 hover:bg-green-700 text-white' : ''}`}
+                        className={`w-full sm:w-auto ${isPhoneSelected ? 'bg-green-600 hover:bg-green-700 !text-white' : ''}`}
                       >
                         {isPhoneSelected ? 'Selected' : 'Select'}
                       </Button>
@@ -198,7 +198,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
                         size="sm"
                         onClick={() => handleToggleRecord('visitor')}
                         variant={isVisitorSelected ? 'secondary' : 'default'}
-                        className={`w-full sm:w-auto ${isVisitorSelected ? 'bg-green-600 hover:bg-green-700 text-white' : ''}`}
+                        className={`w-full sm:w-auto ${isVisitorSelected ? 'bg-green-600 hover:bg-green-700 !text-white' : ''}`}
                       >
                         {isVisitorSelected ? 'Selected' : 'Select'}
                       </Button>
