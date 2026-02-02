@@ -1,7 +1,8 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { MapPin } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { MapPin, ArrowLeft } from 'lucide-react';
+import { Button } from './ui/button';
 import UserMenu from './UserMenu';
 
 interface HeaderProps {
@@ -9,11 +10,26 @@ interface HeaderProps {
 }
 
 const Header = ({ selectedState = null }: HeaderProps) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const showBackButton = location.pathname === '/my-records';
+
   return (
     <header className="bg-[#00063d] border-b border-slate-700 sticky top-0 z-50">
       <div className="container mx-auto px-3 sm:px-4 md:px-6 py-3 md:py-4">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center space-x-2 md:space-x-3 min-w-0 flex-1">
+            {showBackButton && (
+              <Button
+                onClick={() => navigate('/')}
+                variant="ghost"
+                size="sm"
+                className="text-slate-300 hover:text-white hover:bg-slate-700/50"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Search
+              </Button>
+            )}
             <Link to="/" className="cursor-pointer">
               <div className="border-2 border-[#00063d] bg-white p-1">
                 <div className="flex items-center gap-0">

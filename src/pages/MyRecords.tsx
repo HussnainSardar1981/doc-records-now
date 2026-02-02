@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { FileText, Loader2, ShoppingBag, AlertCircle, ArrowLeft } from 'lucide-react';
+import { FileText, Loader2, ShoppingBag, AlertCircle } from 'lucide-react';
 import { useUserOrders } from '@/hooks/useUserOrders';
 import { useRecordData } from '@/hooks/useRecordData';
 import { PhoneRecordDisplay } from '@/components/PhoneRecordDisplay';
@@ -237,14 +237,6 @@ const MyRecords = () => {
       <Header />
       <div className="container mx-auto px-6 py-12 flex-1">
         <div className="mb-8">
-          <Button
-            onClick={() => navigate('/')}
-            variant="ghost"
-            className="mb-4 text-slate-300 hover:text-white hover:bg-slate-700/50"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Search
-          </Button>
           <h1 className="text-4xl font-bold text-white mb-2 flex items-center gap-3">
             <FileText className="w-8 h-8" />
             My Records
