@@ -82,8 +82,8 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
       return <Badge className="bg-yellow-600 text-xs">Available {date}</Badge>;
     } else {
       return (
-        <div className="text-xs text-slate-400">
-          Records will be available in 1 Week. Thanks for your patience.
+        <div className="text-sm font-medium text-yellow-200 bg-yellow-900/30 px-2 py-1 rounded">
+          Records will be available in 2 Weeks. Thanks for your patience.
         </div>
       );
     }
@@ -157,7 +157,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
                         size="sm"
                         onClick={() => handleToggleRecord('telephone')}
                         variant={isPhoneSelected ? 'secondary' : 'default'}
-                        className={`w-full sm:w-auto ${isPhoneSelected ? 'bg-green-600 hover:bg-green-700' : ''}`}
+                        className={`w-full sm:w-auto ${isPhoneSelected ? 'bg-green-600 hover:bg-green-700 text-white' : ''}`}
                       >
                         {isPhoneSelected ? 'Selected' : 'Select'}
                       </Button>
@@ -198,7 +198,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
                         size="sm"
                         onClick={() => handleToggleRecord('visitor')}
                         variant={isVisitorSelected ? 'secondary' : 'default'}
-                        className={`w-full sm:w-auto ${isVisitorSelected ? 'bg-green-600 hover:bg-green-700' : ''}`}
+                        className={`w-full sm:w-auto ${isVisitorSelected ? 'bg-green-600 hover:bg-green-700 text-white' : ''}`}
                       >
                         {isVisitorSelected ? 'Selected' : 'Select'}
                       </Button>
