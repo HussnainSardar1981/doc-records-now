@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Shield, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { MapPin } from 'lucide-react';
 import UserMenu from './UserMenu';
 
 interface HeaderProps {
@@ -9,14 +10,22 @@ interface HeaderProps {
 
 const Header = ({ selectedState = null }: HeaderProps) => {
   return (
-    <header className="bg-slate-900/95 backdrop-blur-sm border-b border-slate-700 sticky top-0 z-50">
+    <header className="bg-[#00063d] border-b border-slate-700 sticky top-0 z-50">
       <div className="container mx-auto px-3 sm:px-4 md:px-6 py-3 md:py-4">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center space-x-2 md:space-x-3 min-w-0 flex-1">
-            <Shield className="w-6 h-6 md:w-8 md:h-8 text-blue-400 flex-shrink-0" />
-            <div className="min-w-0">
-              <h1 className="text-lg md:text-2xl font-bold text-white truncate">Inmate Insights</h1>
-            </div>
+            <Link to="/" className="cursor-pointer">
+              <div className="border-2 border-[#00063d] bg-white p-1">
+                <div className="flex items-center gap-0">
+                  <div className="bg-[#00063d] px-3 py-1.5 md:px-4 md:py-2 border-r border-[#00063d]">
+                    <span className="text-white font-bold text-sm md:text-base tracking-wide">INMATE</span>
+                  </div>
+                  <div className="bg-white px-3 py-1.5 md:px-4 md:py-2">
+                    <span className="text-black font-bold text-sm md:text-base tracking-wide">INSIGHTS</span>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </div>
 
           <div className="flex items-center space-x-2 md:space-x-4 flex-shrink-0">

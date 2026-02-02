@@ -61,7 +61,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-[#00063d] to-[#0a1854] flex flex-col">
       <div className="flex-1 flex items-center justify-center p-4">
         <div className="w-full max-w-md">
           <div className="bg-slate-800/50 backdrop-blur-md border border-slate-700/50 rounded-2xl p-8 shadow-2xl">
@@ -80,7 +80,7 @@ const Login = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   required
-                  className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-blue-500"
+                  className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-[#00063d]"
                 />
               </div>
 
@@ -93,14 +93,14 @@ const Login = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"
                   required
-                  className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-blue-500"
+                  className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-[#00063d]"
                 />
               </div>
 
               <Button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-lg transition-colors"
+                className="w-full bg-[#00063d] hover:bg-[#0a1854] text-white font-medium py-3 rounded-lg transition-colors"
               >
                 {loading ? 'Signing in...' : 'Sign In'}
               </Button>
@@ -109,12 +109,12 @@ const Login = () => {
             <div className="mt-6 text-center space-y-4">
               <p className="text-slate-400">
                 Don't have an account?{' '}
-                <Link to="/signup" className="text-blue-400 hover:text-blue-300 font-medium">
+                <Link to="/signup" className="text-slate-300 hover:text-white font-medium">
                   Sign up
                 </Link>
               </p>
 
-              <Link to="/" className="text-blue-400 hover:text-blue-300 font-medium block">
+              <Link to="/" className="text-slate-300 hover:text-white font-medium block">
                 ← Back to Search
               </Link>
             </div>

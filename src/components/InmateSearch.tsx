@@ -61,7 +61,7 @@ const InmateSearch = () => {
 
   return (
     <div className="space-y-4">
-      <Card className="bg-slate-800/50 border-slate-700">
+      <Card className="bg-slate-800/40 border-slate-600/50">
         <CardHeader className="pb-3">
           <CardTitle className="text-white text-xl flex items-center gap-2">
             <Search className="w-5 h-5" />
@@ -76,15 +76,15 @@ const InmateSearch = () => {
               onChange={(e) => handleDocNumberChange(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="DOC Number (e.g., 885671)"
-              className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+              className="bg-slate-700/50 border-slate-500 text-white placeholder:text-slate-300"
               disabled={state.searchLoading}
             />
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="flex-1 h-px bg-slate-600"></div>
-            <span className="text-slate-400 text-xs">OR</span>
-            <div className="flex-1 h-px bg-slate-600"></div>
+            <div className="flex-1 h-px bg-slate-500"></div>
+            <span className="text-slate-300 text-xs">OR</span>
+            <div className="flex-1 h-px bg-slate-500"></div>
           </div>
 
           {/* Name Search */}
@@ -94,7 +94,7 @@ const InmateSearch = () => {
               onChange={(e) => handleNameChange(e.target.value, lastName)}
               onKeyDown={handleKeyDown}
               placeholder="First Name"
-              className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+              className="bg-slate-700/50 border-slate-500 text-white placeholder:text-slate-300"
               disabled={state.searchLoading}
             />
             <Input
@@ -102,7 +102,7 @@ const InmateSearch = () => {
               onChange={(e) => handleNameChange(firstName, e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Last Name"
-              className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+              className="bg-slate-700/50 border-slate-500 text-white placeholder:text-slate-300"
               disabled={state.searchLoading}
             />
           </div>

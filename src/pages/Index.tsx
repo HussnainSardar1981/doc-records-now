@@ -11,13 +11,13 @@ const Index = () => {
   const { state } = useAppState();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-[#00063d] to-[#0a1854] flex flex-col">
       <Header selectedState={state.selectedState} />
 
       <div className="container mx-auto px-4 md:px-6 py-6 max-w-4xl flex-1">
-        <Alert className="mb-6 bg-blue-900/30 border-blue-500/50">
+        <Alert className="mb-6 bg-[#00063d]/40 border-slate-400/30">
           <Info className="h-4 w-4" />
-          <AlertDescription className="text-blue-200">
+          <AlertDescription className="text-slate-200">
             <strong>Washington State DOC</strong> records available now. More states coming soon.
           </AlertDescription>
         </Alert>

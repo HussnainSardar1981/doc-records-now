@@ -90,7 +90,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
   };
 
   return (
-    <Card className="bg-slate-700/30 border-slate-600/50">
+    <Card className="bg-slate-800/40 border-slate-600/50">
       <CardContent className="p-4 space-y-4">
         {/* Inmate Info */}
         <div className="flex justify-between items-start gap-3">
@@ -148,7 +148,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
                       <Button
                         size="sm"
                         onClick={() => navigate('/my-records', { state: { docNumber, recordType: 'phone' } })}
-                        className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto"
+                        className="bg-[#00063d] hover:bg-[#0a1854] w-full sm:w-auto"
                       >
                         View Records
                       </Button>
@@ -189,7 +189,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
                       <Button
                         size="sm"
                         onClick={() => navigate('/my-records', { state: { docNumber, recordType: 'visitor' } })}
-                        className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto"
+                        className="bg-[#00063d] hover:bg-[#0a1854] w-full sm:w-auto"
                       >
                         View Records
                       </Button>
@@ -223,7 +223,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
             <Button
               onClick={handleCheckout}
               disabled={isProcessing}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-6 text-lg"
+              className="w-full bg-[#00063d] hover:bg-[#0a1854] text-white font-semibold py-6 text-lg"
             >
               {isProcessing ? (
                 <>
