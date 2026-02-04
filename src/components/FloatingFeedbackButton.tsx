@@ -70,11 +70,11 @@ const FloatingFeedbackButton = () => {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
-          size="icon"
-          className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full bg-[#00063d] hover:bg-[#0a1854] shadow-lg"
+          className="fixed bottom-6 right-6 z-50 rounded-full bg-[#00063d] hover:bg-[#0a1854] shadow-lg px-5 py-3 h-auto"
           aria-label="Send feedback"
         >
-          <MessageSquare className="h-6 w-6 text-white" />
+          <MessageSquare className="h-5 w-5 text-white mr-2" />
+          <span className="text-white font-medium">Feedback</span>
         </Button>
       </DialogTrigger>
 
