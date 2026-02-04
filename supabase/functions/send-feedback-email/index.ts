@@ -1,5 +1,6 @@
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
+import { SMTPClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts"
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -18,9 +19,11 @@ serve(async (req) => {
       throw new Error('Feedback message is required')
     }
 
-    const resendApiKey = Deno.env.get('RESEND_API_KEY')
-    if (!resendApiKey) {
-      console.error('RESEND_API_KEY not configured')
+    const gmailUser = Deno.env.get('GMAIL_USER')
+    const gmailPassword = Deno.env.get('GMAIL_APP_PASSWORD')
+
+    if (!gmailUser || !gmailPassword) {
+      console.error('Gmail credentials not configured')
       throw new Error('Email service not configured')
     }
 
@@ -34,29 +37,30 @@ serve(async (req) => {
       <p><em>Sent from Inmate Insights feedback form</em></p>
     `
 
-    const resendResponse = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${resendApiKey}`,
-        'Content-Type': 'application/json',
+    const client = new SMTPClient({
+      connection: {
+        hostname: "smtp.gmail.com",
+        port: 465,
+        tls: true,
+        auth: {
+          username: gmailUser,
+          password: gmailPassword,
+        },
       },
-      body: JSON.stringify({
-        from: 'Inmate Insights <onboarding@resend.dev>',
-        to: ['Inmateinsights5@gmail.com'],
-        subject: `Customer Feedback${customerEmail ? ` from ${customerEmail}` : ''}`,
-        html: emailHtml,
-        reply_to: customerEmail || undefined,
-      }),
     })
 
-    if (!resendResponse.ok) {
-      const errorData = await resendResponse.text()
-      console.error('Resend API error:', errorData)
-      throw new Error('Failed to send email')
-    }
+    await client.send({
+      from: gmailUser,
+      to: gmailUser,
+      subject: `Customer Feedback${customerEmail ? ` from ${customerEmail}` : ''}`,
+      content: feedback,
+      html: emailHtml,
+      replyTo: customerEmail || undefined,
+    })
 
-    const resendData = await resendResponse.json()
-    console.log('Feedback email sent successfully:', resendData.id)
+    await client.close()
+
+    console.log('Feedback email sent successfully via Gmail')
 
     return new Response(
       JSON.stringify({ success: true, message: 'Feedback sent successfully' }),
