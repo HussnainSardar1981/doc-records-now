@@ -85,11 +85,7 @@ export const VisitorRecordDisplay = ({
         </CardHeader>
         <CardContent className="blur-md select-none">
           <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <p className="text-slate-400 text-sm">Total Visits</p>
-                <p className="text-white text-2xl font-bold">18</p>
-              </div>
+            <div>
               <div>
                 <p className="text-slate-400 text-sm">Approved Visitors</p>
                 <p className="text-white text-2xl font-bold">3</p>
@@ -155,11 +151,7 @@ export const VisitorRecordDisplay = ({
         </div>
       </CardHeader>
       <CardContent className="space-y-6">
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-slate-700/30 p-4 rounded-lg">
-            <p className="text-slate-400 text-sm mb-1">Total Visits</p>
-            <p className="text-white text-3xl font-bold">{record.total_visits}</p>
-          </div>
+        <div>
           <div className="bg-slate-700/30 p-4 rounded-lg">
             <p className="text-slate-400 text-sm mb-1">Approved Visitors</p>
             <p className="text-white text-3xl font-bold">{record.total_approved_visitors}</p>

@@ -82,15 +82,7 @@ export const RecordPreview = ({ recordType, isAvailable = false, availableDate }
         </CardHeader>
         <CardContent className="blur-md select-none">
           <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <p className="text-slate-400 text-sm">
-                  {isPhone ? 'Total Calls' : 'Total Visits'}
-                </p>
-                <p className="text-white text-2xl font-bold">
-                  {isPhone ? data.sampleData.totalCalls : data.sampleData.totalVisits}
-                </p>
-              </div>
+            <div>
               <div>
                 <p className="text-slate-400 text-sm">
                   {isPhone ? 'Approved Numbers' : 'Approved Visitors'}

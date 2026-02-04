@@ -64,8 +64,6 @@ export const generatePhoneRecordsPDF = (
 
   doc.setFontSize(11);
   doc.setFont('helvetica', 'normal');
-  doc.text(`Total Calls: ${totalCalls}`, 20, yPos);
-  yPos += 6;
   doc.text(`Approved Numbers: ${totalApprovedNumbers}`, 20, yPos);
   yPos += 15;
 
@@ -148,8 +146,6 @@ export const generateVisitorRecordsPDF = (
 
   doc.setFontSize(11);
   doc.setFont('helvetica', 'normal');
-  doc.text(`Total Visits: ${totalVisits}`, 20, yPos);
-  yPos += 6;
   doc.text(`Approved Visitors: ${totalApprovedVisitors}`, 20, yPos);
   yPos += 15;
 

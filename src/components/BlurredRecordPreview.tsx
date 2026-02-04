@@ -34,9 +34,8 @@ export const BlurredRecordPreview = ({ type, preview }: BlurredRecordPreviewProp
       {/* Blurred Content */}
       <div className="filter blur-sm pointer-events-none select-none">
         <div className="space-y-2">
-          <div className="flex items-center justify-between text-sm text-white font-semibold mb-3">
-            <span>Total Calls: {data.total_calls}</span>
-            <span>Unique Numbers: {data.total_unique_numbers}</span>
+          <div className="text-sm text-white font-semibold mb-3">
+            <span>Approved Numbers: {data.total_unique_numbers}</span>
           </div>
 
           <div className="space-y-1.5">
@@ -78,8 +77,8 @@ export const BlurredRecordPreview = ({ type, preview }: BlurredRecordPreviewProp
       {/* Blurred Content */}
       <div className="filter blur-sm pointer-events-none select-none">
         <div className="space-y-2">
-          <div className="flex items-center justify-between text-sm text-white font-semibold mb-3">
-            <span>Total Visitors: {data.total_visitors}</span>
+          <div className="text-sm text-white font-semibold mb-3">
+            <span>Approved Visitors: {data.total_visitors}</span>
           </div>
 
           <div className="space-y-1.5">
