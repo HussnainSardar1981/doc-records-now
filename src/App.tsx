@@ -12,6 +12,7 @@ import Signup from "./pages/Signup";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import MyRecords from "./pages/MyRecords";
 import NotFound from "./pages/NotFound";
+import FloatingFeedbackButton from "./components/FloatingFeedbackButton";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,6 +31,7 @@ const App = () => {
           <TooltipProvider>
             <Toaster />
             <Sonner />
+            <FloatingFeedbackButton />
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Index />} />
