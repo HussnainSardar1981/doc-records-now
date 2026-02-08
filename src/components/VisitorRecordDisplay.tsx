@@ -34,6 +34,7 @@ interface VisitorRecordDisplayProps {
   fulfillmentStatus: string;
   availableDate?: string | null;
   docNumber?: string;
+  inmateName?: string;
 }
 
 export const VisitorRecordDisplay = ({
@@ -41,7 +42,8 @@ export const VisitorRecordDisplay = ({
   isUnlocked,
   fulfillmentStatus,
   availableDate,
-  docNumber
+  docNumber,
+  inmateName
 }: VisitorRecordDisplayProps) => {
   const handleDownloadPDF = () => {
     if (!record || !docNumber) return;
@@ -53,7 +55,8 @@ export const VisitorRecordDisplay = ({
       record.total_visits || 0,
       approvedVisitors,
       visitHistory,
-      record.last_updated || undefined
+      record.last_updated || undefined,
+      inmateName
     );
   };
 

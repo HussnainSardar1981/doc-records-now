@@ -26,16 +26,17 @@ const OrderCard = ({ order }: { order: any }) => {
     phone_date: string | null;
     visitor_date: string | null;
   }>({ phone_date: null, visitor_date: null });
+  const [inmateName, setInmateName] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    const fetchAvailabilityDates = async () => {
+    const fetchInmateInfo = async () => {
       // Use inmate_doc_number if available, fallback to inmate_id for older orders
       const docNumber = order.inmate_doc_number || order.inmate_id;
       if (!docNumber) return;
 
       const { data } = await supabase
         .from('inmates')
-        .select('phone_records_available_date, visitor_records_available_date')
+        .select('full_name, phone_records_available_date, visitor_records_available_date')
         .eq('doc_number', docNumber)
         .single();
 
@@ -44,10 +45,13 @@ const OrderCard = ({ order }: { order: any }) => {
           phone_date: data.phone_records_available_date,
           visitor_date: data.visitor_records_available_date
         });
+        if (data.full_name) {
+          setInmateName(data.full_name);
+        }
       }
     };
 
-    fetchAvailabilityDates();
+    fetchInmateInfo();
   }, [order.inmate_doc_number, order.inmate_id]);
 
   const hasPhoneRecords = order.record_types.includes('telephone');
@@ -104,6 +108,7 @@ const OrderCard = ({ order }: { order: any }) => {
             fulfillmentStatus={order.fulfillment_status}
             availableDate={availabilityDates.phone_date}
             docNumber={order.inmate_doc_number || order.inmate_id}
+            inmateName={inmateName}
           />
         )}
 
@@ -114,6 +119,7 @@ const OrderCard = ({ order }: { order: any }) => {
             fulfillmentStatus={order.fulfillment_status}
             availableDate={availabilityDates.visitor_date}
             docNumber={order.inmate_doc_number || order.inmate_id}
+            inmateName={inmateName}
           />
         )}
 
@@ -284,6 +290,7 @@ const MyRecords = () => {
                   fulfillmentStatus="fulfilled"
                   availableDate={freeAccessRecord.inmate.phone_records_available_date}
                   docNumber={freeAccessRecord.inmate.doc_number}
+                  inmateName={freeAccessRecord.inmate.full_name}
                 />
               )}
               {freeAccessRecord.visitorRecord && (
@@ -293,6 +300,7 @@ const MyRecords = () => {
                   fulfillmentStatus="fulfilled"
                   availableDate={freeAccessRecord.inmate.visitor_records_available_date}
                   docNumber={freeAccessRecord.inmate.doc_number}
+                  inmateName={freeAccessRecord.inmate.full_name}
                 />
               )}
             </CardContent>

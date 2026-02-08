@@ -29,6 +29,7 @@ interface PhoneRecordDisplayProps {
   fulfillmentStatus: string;
   availableDate?: string | null;
   docNumber?: string;
+  inmateName?: string;
 }
 
 export const PhoneRecordDisplay = ({
@@ -36,7 +37,8 @@ export const PhoneRecordDisplay = ({
   isUnlocked,
   fulfillmentStatus,
   availableDate,
-  docNumber
+  docNumber,
+  inmateName
 }: PhoneRecordDisplayProps) => {
   const handleDownloadPDF = () => {
     if (!record || !docNumber) return;
@@ -46,7 +48,8 @@ export const PhoneRecordDisplay = ({
       record.total_calls || 0,
       record.total_approved_numbers || 0,
       callHistory,
-      record.last_updated || undefined
+      record.last_updated || undefined,
+      inmateName
     );
   };
 

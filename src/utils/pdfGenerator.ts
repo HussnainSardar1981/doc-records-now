@@ -1,4 +1,5 @@
 import jsPDF from 'jspdf';
+import { LOGO_BASE64 } from './logoBase64';
 
 interface CallRecord {
   dialed_number?: string;
@@ -25,23 +26,63 @@ interface Visit {
   visitor_age?: string;
 }
 
+const addLogoAndHeader = (doc: jsPDF, pageWidth: number): number => {
+  let yPos = 15;
+
+  // Add logo centered
+  const logoWidth = 50;
+  const logoHeight = 14;
+  const logoX = (pageWidth - logoWidth) / 2;
+  doc.addImage(LOGO_BASE64, 'PNG', logoX, yPos, logoWidth, logoHeight);
+  yPos += logoHeight + 8;
+
+  return yPos;
+};
+
+const addFooter = (doc: jsPDF, pageWidth: number) => {
+  const pageCount = doc.getNumberOfPages();
+  for (let i = 1; i <= pageCount; i++) {
+    doc.setPage(i);
+
+    // Add logo in footer too (smaller)
+    const footerLogoWidth = 30;
+    const footerLogoHeight = 8.5;
+    const footerLogoX = (pageWidth - footerLogoWidth) / 2;
+    doc.addImage(LOGO_BASE64, 'PNG', footerLogoX, 278, footerLogoWidth, footerLogoHeight);
+
+    doc.setFontSize(8);
+    doc.text(`Page ${i} of ${pageCount}`, pageWidth / 2, 290, { align: 'center' });
+    doc.text('Inmate Insights - Confidential', pageWidth / 2, 294, { align: 'center' });
+  }
+};
+
 export const generatePhoneRecordsPDF = (
   docNumber: string,
   totalCalls: number,
   totalApprovedNumbers: number,
   callHistory: CallRecord[],
-  lastUpdated?: string
+  lastUpdated?: string,
+  inmateName?: string
 ) => {
   const doc = new jsPDF();
   const pageWidth = doc.internal.pageSize.getWidth();
-  let yPos = 20;
+  let yPos = addLogoAndHeader(doc, pageWidth);
 
-  // Header
+  // Title
   doc.setFontSize(20);
   doc.setFont('helvetica', 'bold');
   doc.text('Phone Records Report', pageWidth / 2, yPos, { align: 'center' });
   yPos += 10;
 
+  // Inmate name
+  if (inmateName) {
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.text(inmateName, pageWidth / 2, yPos, { align: 'center' });
+    yPos += 8;
+  }
+
+  // DOC number
   doc.setFontSize(12);
   doc.setFont('helvetica', 'normal');
   doc.text(`DOC #${docNumber}`, pageWidth / 2, yPos, { align: 'center' });
@@ -94,15 +135,7 @@ export const generatePhoneRecordsPDF = (
     }
   }
 
-  // Footer
-  const pageCount = doc.getNumberOfPages();
-  for (let i = 1; i <= pageCount; i++) {
-    doc.setPage(i);
-    doc.setFontSize(8);
-    doc.text(`Page ${i} of ${pageCount}`, pageWidth / 2, 290, { align: 'center' });
-    doc.text('Inmate Records - Confidential', pageWidth / 2, 295, { align: 'center' });
-  }
-
+  addFooter(doc, pageWidth);
   doc.save(`phone_records_${docNumber}.pdf`);
 };
 
@@ -112,18 +145,28 @@ export const generateVisitorRecordsPDF = (
   totalVisits: number,
   approvedVisitors: ApprovedVisitor[],
   visitHistory: Visit[],
-  lastUpdated?: string
+  lastUpdated?: string,
+  inmateName?: string
 ) => {
   const doc = new jsPDF();
   const pageWidth = doc.internal.pageSize.getWidth();
-  let yPos = 20;
+  let yPos = addLogoAndHeader(doc, pageWidth);
 
-  // Header
+  // Title
   doc.setFontSize(20);
   doc.setFont('helvetica', 'bold');
   doc.text('Visitor Records Report', pageWidth / 2, yPos, { align: 'center' });
   yPos += 10;
 
+  // Inmate name
+  if (inmateName) {
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.text(inmateName, pageWidth / 2, yPos, { align: 'center' });
+    yPos += 8;
+  }
+
+  // DOC number
   doc.setFontSize(12);
   doc.setFont('helvetica', 'normal');
   doc.text(`DOC #${docNumber}`, pageWidth / 2, yPos, { align: 'center' });
@@ -198,14 +241,6 @@ export const generateVisitorRecordsPDF = (
     }
   }
 
-  // Footer
-  const pageCount = doc.getNumberOfPages();
-  for (let i = 1; i <= pageCount; i++) {
-    doc.setPage(i);
-    doc.setFontSize(8);
-    doc.text(`Page ${i} of ${pageCount}`, pageWidth / 2, 290, { align: 'center' });
-    doc.text('Inmate Records - Confidential', pageWidth / 2, 295, { align: 'center' });
-  }
-
+  addFooter(doc, pageWidth);
   doc.save(`visitor_records_${docNumber}.pdf`);
 };
