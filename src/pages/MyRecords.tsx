@@ -151,10 +151,18 @@ const MyRecords = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { orders, loading, error } = useUserOrders();
-  const [recordFilter, setRecordFilter] = useState<'all' | 'telephone' | 'visitor'>('all');
 
   // Get DOC number from navigation state (for free access users)
   const navState = location.state as { docNumber?: string; recordType?: string } | null;
+
+  // Set initial filter based on navigation state
+  const getInitialFilter = (): 'all' | 'telephone' | 'visitor' => {
+    if (navState?.recordType === 'phone') return 'telephone';
+    if (navState?.recordType === 'visitor') return 'visitor';
+    return 'all';
+  };
+
+  const [recordFilter, setRecordFilter] = useState<'all' | 'telephone' | 'visitor'>(getInitialFilter());
   const [freeAccessRecord, setFreeAccessRecord] = useState<any>(null);
   const [loadingFreeAccess, setLoadingFreeAccess] = useState(false);
 
