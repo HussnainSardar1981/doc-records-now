@@ -77,7 +77,7 @@ export const generatePhoneRecordsPDF = (
   // Inmate name
   if (inmateName) {
     doc.setFontSize(14);
-    doc.setFont('helvetica', 'bold');
+    doc.setFont('helvetica', 'normal');
     doc.text(inmateName, pageWidth / 2, yPos, { align: 'center' });
     yPos += 8;
   }
@@ -161,7 +161,7 @@ export const generateVisitorRecordsPDF = (
   // Inmate name
   if (inmateName) {
     doc.setFontSize(14);
-    doc.setFont('helvetica', 'bold');
+    doc.setFont('helvetica', 'normal');
     doc.text(inmateName, pageWidth / 2, yPos, { align: 'center' });
     yPos += 8;
   }
