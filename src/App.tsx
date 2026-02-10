@@ -15,7 +15,6 @@ import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import FloatingFeedbackButton from "./components/FloatingFeedbackButton";
 import PixelRouteTracker from "./components/PixelRouteTracker";
-import DisclaimerPopup from "./components/DisclaimerPopup";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,7 +34,6 @@ const App = () => {
             <Toaster />
             <Sonner />
             <FloatingFeedbackButton />
-            <DisclaimerPopup />
             <BrowserRouter>
               <PixelRouteTracker />
               <Routes>

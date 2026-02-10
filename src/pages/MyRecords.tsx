@@ -14,6 +14,7 @@ import Footer from '@/components/Footer';
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { LoadingCard } from '@/components/LoadingCard';
+import DisclaimerPopup from '@/components/DisclaimerPopup';
 
 const OrderCard = ({ order }: { order: any }) => {
   const { phoneRecord, visitorRecord, loading } = useRecordData({
@@ -240,6 +241,7 @@ const MyRecords = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#00063d] to-[#0a1854] flex flex-col">
+      <DisclaimerPopup />
       <Header />
       <div className="container mx-auto px-6 py-12 flex-1">
         <div className="mb-8">
