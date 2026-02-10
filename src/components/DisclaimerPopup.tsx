@@ -29,6 +29,7 @@ const DisclaimerPopup = () => {
     <Dialog open={open} onOpenChange={() => {}}>
       <DialogContent
         className="bg-[#0a1854] border-slate-700 text-white w-[calc(100%-2rem)] max-w-lg p-4 sm:p-6 rounded-lg [&>button]:hidden"
+        aria-describedby={undefined}
         onPointerDownOutside={(e) => e.preventDefault()}
         onEscapeKeyDown={(e) => e.preventDefault()}
       >
