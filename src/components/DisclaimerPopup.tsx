@@ -5,8 +5,8 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
 } from '@/components/ui/dialog';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 const DISCLAIMER_KEY = 'disclaimer_accepted';
 
@@ -34,21 +34,61 @@ const DisclaimerPopup = () => {
       >
         <DialogHeader>
           <DialogTitle className="text-xl font-bold text-white text-center">
-            Disclaimer
+            Disclaimer & Terms of Use
           </DialogTitle>
-          <DialogDescription className="text-slate-300 text-base leading-relaxed mt-4">
-            This website is <strong className="text-white">not affiliated with, endorsed by, or connected to</strong> the
-            Washington State Department of Corrections (WA DOC) or any government agency.
-            All records and information provided through this service are obtained from
-            publicly available sources. This is an independent, privately operated service.
-          </DialogDescription>
         </DialogHeader>
-        <div className="mt-6">
+        <ScrollArea className="max-h-[60vh] pr-4">
+          <div className="text-slate-300 text-sm leading-relaxed space-y-4 mt-4">
+            <p>
+              By accessing and using Inmate Insights, you agree to the following terms:
+            </p>
+
+            <div>
+              <h3 className="text-white font-semibold mb-1">1. Lawful Use Only</h3>
+              <p>
+                This service is intended for legal and legitimate purposes only, including but not
+                limited to background checks, legal proceedings, journalism, and personal safety.
+                You agree not to use any information obtained through this site for any unlawful purpose.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-white font-semibold mb-1">2. No Harassment or Targeting</h3>
+              <p>
+                You may not use the information provided to stalk, harass, intimidate, threaten,
+                or make harmful contact with any individual listed in our records. Any such use is
+                strictly prohibited and may be reported to law enforcement.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-white font-semibold mb-1">3. No Doxxing or Public Exposure</h3>
+              <p>
+                You agree not to publicly share, post, or distribute personal information obtained
+                through this site with the intent to harm, shame, or endanger any individual.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-white font-semibold mb-1">4. User Responsibility</h3>
+              <p>
+                Inmate Insights provides publicly available information as a convenience. We do not
+                verify the accuracy of records and are not responsible for how users choose to use
+                the data. By proceeding, you accept full responsibility for your use of this service.
+              </p>
+            </div>
+
+            <p className="text-slate-400 text-xs mt-2">
+              By clicking "I Agree," you confirm that you have read and accept these terms.
+            </p>
+          </div>
+        </ScrollArea>
+        <div className="mt-4">
           <Button
             onClick={handleAccept}
             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-lg transition-colors"
           >
-            Got it
+            I Agree
           </Button>
         </div>
       </DialogContent>
