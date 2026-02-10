@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { FileText, Loader2, ShoppingBag, AlertCircle } from 'lucide-react';
+import { FileText, Loader2, ShoppingBag, AlertCircle, Phone, Users } from 'lucide-react';
 import { useUserOrders } from '@/hooks/useUserOrders';
 import { useRecordData } from '@/hooks/useRecordData';
 import { PhoneRecordDisplay } from '@/components/PhoneRecordDisplay';
@@ -16,7 +16,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { LoadingCard } from '@/components/LoadingCard';
 import DisclaimerPopup from '@/components/DisclaimerPopup';
 
-const OrderCard = ({ order }: { order: any }) => {
+const OrderCard = ({ order, filter }: { order: any; filter: 'all' | 'telephone' | 'visitor' }) => {
   const { phoneRecord, visitorRecord, loading } = useRecordData({
     phoneRecordId: order.phone_record_id,
     visitorRecordId: order.visitor_record_id,
@@ -55,8 +55,8 @@ const OrderCard = ({ order }: { order: any }) => {
     fetchInmateInfo();
   }, [order.inmate_doc_number, order.inmate_id]);
 
-  const hasPhoneRecords = order.record_types.includes('telephone');
-  const hasVisitorRecords = order.record_types.includes('visitor');
+  const hasPhoneRecords = order.record_types.includes('telephone') && (filter === 'all' || filter === 'telephone');
+  const hasVisitorRecords = order.record_types.includes('visitor') && (filter === 'all' || filter === 'visitor');
 
   const getFulfillmentBadge = () => {
     switch (order.fulfillment_status) {
@@ -151,6 +151,7 @@ const MyRecords = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { orders, loading, error } = useUserOrders();
+  const [recordFilter, setRecordFilter] = useState<'all' | 'telephone' | 'visitor'>('all');
 
   // Get DOC number from navigation state (for free access users)
   const navState = location.state as { docNumber?: string; recordType?: string } | null;
@@ -250,6 +251,42 @@ const MyRecords = () => {
             My Records
           </h1>
           <p className="text-slate-300">View and access your purchased inmate records</p>
+
+          <div className="flex gap-2 mt-4 flex-wrap">
+            <Button
+              variant={recordFilter === 'all' ? 'default' : 'outline'}
+              onClick={() => setRecordFilter('all')}
+              className={recordFilter === 'all'
+                ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                : 'border-slate-600 text-slate-300 hover:bg-slate-700'}
+              size="sm"
+            >
+              <FileText className="w-4 h-4 mr-1.5" />
+              All Records
+            </Button>
+            <Button
+              variant={recordFilter === 'telephone' ? 'default' : 'outline'}
+              onClick={() => setRecordFilter('telephone')}
+              className={recordFilter === 'telephone'
+                ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                : 'border-slate-600 text-slate-300 hover:bg-slate-700'}
+              size="sm"
+            >
+              <Phone className="w-4 h-4 mr-1.5" />
+              Phone Records
+            </Button>
+            <Button
+              variant={recordFilter === 'visitor' ? 'default' : 'outline'}
+              onClick={() => setRecordFilter('visitor')}
+              className={recordFilter === 'visitor'
+                ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                : 'border-slate-600 text-slate-300 hover:bg-slate-700'}
+              size="sm"
+            >
+              <Users className="w-4 h-4 mr-1.5" />
+              Visitor Records
+            </Button>
+          </div>
         </div>
 
         {loading && (
@@ -285,7 +322,7 @@ const MyRecords = () => {
               <Badge className="bg-emerald-600 w-fit mt-2">Free Access</Badge>
             </CardHeader>
             <CardContent className="space-y-4">
-              {freeAccessRecord.phoneRecord && (
+              {freeAccessRecord.phoneRecord && (recordFilter === 'all' || recordFilter === 'telephone') && (
                 <PhoneRecordDisplay
                   record={freeAccessRecord.phoneRecord}
                   isUnlocked={true}
@@ -295,7 +332,7 @@ const MyRecords = () => {
                   inmateName={freeAccessRecord.inmate.full_name}
                 />
               )}
-              {freeAccessRecord.visitorRecord && (
+              {freeAccessRecord.visitorRecord && (recordFilter === 'all' || recordFilter === 'visitor') && (
                 <VisitorRecordDisplay
                   record={freeAccessRecord.visitorRecord}
                   isUnlocked={true}
@@ -327,13 +364,37 @@ const MyRecords = () => {
           </Card>
         )}
 
-        {!loading && !error && orders.length > 0 && (
-          <div>
-            {orders.map((order) => (
-              <OrderCard key={order.id} order={order} />
-            ))}
-          </div>
-        )}
+        {!loading && !error && orders.length > 0 && (() => {
+          const filteredOrders = recordFilter === 'all'
+            ? orders
+            : orders.filter(o => o.record_types.includes(recordFilter));
+
+          return filteredOrders.length > 0 ? (
+            <div>
+              {filteredOrders.map((order) => (
+                <OrderCard key={order.id} order={order} filter={recordFilter} />
+              ))}
+            </div>
+          ) : (
+            <Card className="bg-slate-800/50 border-slate-700">
+              <CardContent className="py-12 text-center">
+                <ShoppingBag className="w-16 h-16 text-slate-500 mx-auto mb-4" />
+                <h3 className="text-white text-xl font-semibold mb-2">
+                  No {recordFilter === 'telephone' ? 'Phone' : 'Visitor'} Records
+                </h3>
+                <p className="text-slate-400 mb-6">
+                  You haven't purchased any {recordFilter === 'telephone' ? 'phone' : 'visitor'} records yet.
+                </p>
+                <Button
+                  onClick={() => setRecordFilter('all')}
+                  className="bg-[#00063d] hover:bg-[#0a1854]"
+                >
+                  View All Records
+                </Button>
+              </CardContent>
+            </Card>
+          );
+        })()}
       </div>
       <Footer />
     </div>
