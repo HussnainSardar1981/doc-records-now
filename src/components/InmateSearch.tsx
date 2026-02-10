@@ -8,6 +8,7 @@ import SearchButton from './SearchButton';
 import SearchResults from './SearchResults';
 import { useInmateSearchResults } from '@/hooks/useInmateSearchResults';
 import { useAppState } from '@/contexts/AppStateContext';
+import { trackSearch } from '@/utils/pixelTracking';
 
 const InmateSearch = () => {
   const [firstName, setFirstName] = useState('');
@@ -41,6 +42,7 @@ const InmateSearch = () => {
 
   const handleSearch = () => {
     if (state.selectedState && state.searchQuery) {
+      trackSearch(state.searchQuery);
       searchInmates(state.searchQuery, state.selectedState);
     }
   };

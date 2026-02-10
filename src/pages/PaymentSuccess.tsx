@@ -1,12 +1,17 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, FileText } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { trackPurchase } from '@/utils/pixelTracking';
 
 const PaymentSuccess = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    trackPurchase();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 flex items-center justify-center p-6">

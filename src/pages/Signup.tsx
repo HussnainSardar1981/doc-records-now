@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import Footer from '@/components/Footer';
+import { trackSignup } from '@/utils/pixelTracking';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -60,6 +61,7 @@ const Signup = () => {
           duration: 3000,
         });
       } else {
+        trackSignup();
         toast({
           title: "Signup Successful",
           description: "Please check your email to confirm your account",

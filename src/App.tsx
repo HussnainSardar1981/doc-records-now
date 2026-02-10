@@ -14,6 +14,7 @@ import MyRecords from "./pages/MyRecords";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import FloatingFeedbackButton from "./components/FloatingFeedbackButton";
+import PixelRouteTracker from "./components/PixelRouteTracker";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,6 +35,7 @@ const App = () => {
             <Sonner />
             <FloatingFeedbackButton />
             <BrowserRouter>
+              <PixelRouteTracker />
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/login" element={<Login />} />
