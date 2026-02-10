@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Twitter } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -55,6 +56,10 @@ const Footer = () => {
 
           <p className="text-slate-400 text-sm pb-12 sm:pb-0">
             © 2024 WA DOC Records. All rights reserved.
+            {' | '}
+            <Link to="/privacy" className="text-slate-400 hover:text-white transition-colors underline">
+              Privacy Policy
+            </Link>
           </p>
         </div>
       </div>

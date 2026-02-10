@@ -12,6 +12,7 @@ import Signup from "./pages/Signup";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import MyRecords from "./pages/MyRecords";
 import NotFound from "./pages/NotFound";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import FloatingFeedbackButton from "./components/FloatingFeedbackButton";
 
 const queryClient = new QueryClient({
@@ -39,6 +40,7 @@ const App = () => {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/payment-success" element={<PaymentSuccess />} />
                 <Route path="/my-records" element={<MyRecords />} />
+                <Route path="/privacy" element={<PrivacyPolicy />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BrowserRouter>
