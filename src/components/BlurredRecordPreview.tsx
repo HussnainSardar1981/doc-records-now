@@ -30,9 +30,9 @@ export const BlurredRecordPreview = ({ type, preview }: BlurredRecordPreviewProp
   if (!preview) return null;
 
   const renderPhonePreview = (data: PhonePreview) => (
-    <div className="relative">
+    <div className="relative h-full min-h-[180px]">
       {/* Blurred Content */}
-      <div className="filter blur-sm pointer-events-none select-none">
+      <div className="filter blur-sm pointer-events-none select-none overflow-hidden h-full">
         <div className="space-y-2">
           <div className="text-sm text-white font-semibold mb-3">
             <span>Approved Numbers: {data.total_unique_numbers}</span>
@@ -73,9 +73,9 @@ export const BlurredRecordPreview = ({ type, preview }: BlurredRecordPreviewProp
   );
 
   const renderVisitorPreview = (data: VisitorPreview) => (
-    <div className="relative">
+    <div className="relative h-full min-h-[180px]">
       {/* Blurred Content */}
-      <div className="filter blur-sm pointer-events-none select-none">
+      <div className="filter blur-sm pointer-events-none select-none overflow-hidden h-full">
         <div className="space-y-2">
           <div className="text-sm text-white font-semibold mb-3">
             <span>Approved Visitors: {data.total_visitors}</span>
@@ -116,8 +116,8 @@ export const BlurredRecordPreview = ({ type, preview }: BlurredRecordPreviewProp
   );
 
   return (
-    <Card className="bg-black/20 border-white/10 mt-2">
-      <CardContent className="p-3">
+    <Card className="bg-black/20 border-white/10 mt-2 flex-1">
+      <CardContent className="p-3 h-full">
         {type === 'phone' && renderPhonePreview(preview as PhonePreview)}
         {type === 'visitor' && renderVisitorPreview(preview as VisitorPreview)}
       </CardContent>

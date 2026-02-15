@@ -155,7 +155,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
           ) : (
             <div className="flex flex-col md:flex-row gap-2">
               {/* Phone Records */}
-              <div className="flex-1">
+              <div className="flex-1 flex flex-col">
                 <div className="p-3 bg-gradient-to-br from-[#0A1F4A] to-[#000B2E] rounded-lg border border-white/10 space-y-3">
                   <div className="flex items-center gap-3">
                     <div className="bg-blue-500/20 p-1.5 rounded-lg">
@@ -197,7 +197,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
               </div>
 
               {/* Visitor Records */}
-              <div className="flex-1">
+              <div className="flex-1 flex flex-col">
                 <div className="p-3 bg-gradient-to-br from-[#0A1F4A] to-[#000B2E] rounded-lg border border-white/10 space-y-3">
                   <div className="flex items-center gap-3">
                     <div className="bg-purple-500/20 p-1.5 rounded-lg">
