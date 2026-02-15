@@ -12,7 +12,7 @@ interface HeaderProps {
 const Header = ({ selectedState = null }: HeaderProps) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const showBackButton = location.pathname === '/my-records';
+  const showBackButton = location.pathname === '/my-records' || location.pathname === '/results';
 
   return (
     <header className="bg-[#00063d] border-b border-slate-700 sticky top-0 z-50">

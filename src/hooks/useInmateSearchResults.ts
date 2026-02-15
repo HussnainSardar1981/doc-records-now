@@ -15,26 +15,26 @@ export const useInmateSearchResults = () => {
   const { toast } = useToast();
   const { updateSearchResults } = useAppState();
 
-  const searchInmates = async (query: string, state: string) => {
+  const searchInmates = async (query: string, state: string): Promise<boolean> => {
     if (!query || !state) {
       updateSearchResults([], false, null);
-      return;
+      return false;
     }
 
     // Check if query looks like a name (contains space or comma) or DOC number
     const isNameSearch = query.includes(' ') || query.includes(',');
     const docNumberPattern = /^[0-9]{3,8}$/;
-    
+
     if (!isNameSearch && !docNumberPattern.test(query.trim())) {
       const errorMsg = 'Please enter a valid DOC number (3-8 digits) or a full name';
       updateSearchResults([], false, errorMsg);
-      return;
+      return false;
     }
 
     if (isNameSearch && query.trim().length < 3) {
       const errorMsg = 'Please enter a full name with at least 3 characters';
       updateSearchResults([], false, errorMsg);
-      return;
+      return false;
     }
 
     updateSearchResults([], true, null);
@@ -104,19 +104,9 @@ export const useInmateSearchResults = () => {
           description: `Found ${searchResults.length} record(s) for ${searchType} ${query}`,
           duration: 3000,
         });
-
-        // Scroll to search results after successful search
-        setTimeout(() => {
-          const resultsElement = document.querySelector('[data-search-results]');
-          if (resultsElement) {
-            resultsElement.scrollIntoView({ 
-              behavior: 'smooth', 
-              block: 'start',
-              inline: 'nearest'
-            });
-          }
-        }, 100);
       }
+
+      return true;
     } catch (error: any) {
       console.error('🚨 Search failed with error:', {
         message: error.message,
@@ -134,6 +124,8 @@ export const useInmateSearchResults = () => {
         variant: "destructive",
         duration: 3000,
       });
+
+      return false;
     }
   };
 

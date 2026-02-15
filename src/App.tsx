@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import MyRecords from "./pages/MyRecords";
+import Results from "./pages/Results";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import FloatingFeedbackButton from "./components/FloatingFeedbackButton";
@@ -38,6 +39,7 @@ const App = () => {
               <PixelRouteTracker />
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/results" element={<Results />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/payment-success" element={<PaymentSuccess />} />
