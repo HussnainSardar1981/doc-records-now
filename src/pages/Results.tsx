@@ -20,7 +20,7 @@ const Results = () => {
     <div className="min-h-screen bg-gradient-to-b from-[#000B2E] via-[#001855] to-[#000B2E] flex flex-col relative overflow-hidden">
       <Header selectedState={state.selectedState} />
 
-      <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4 md:py-6 max-w-5xl flex-1 animate-fadeIn">
+      <div className="mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-3 md:py-6 max-w-5xl w-full flex-1 animate-fadeIn">
         <SearchResults
           results={state.searchResults}
           loading={state.searchLoading}

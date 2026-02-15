@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#000B2E]/80 border-t border-white/10 py-6 md:py-8">
-      <div className="container mx-auto px-6">
+    <footer className="bg-[#000B2E]/80 border-t border-white/10 py-4 md:py-8">
+      <div className="mx-auto px-3 sm:px-6 max-w-5xl w-full">
         <div className="text-center">
           <h3 className="text-white text-lg font-semibold mb-4">
             FOLLOW US ON SOCIAL MEDIA

@@ -94,7 +94,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
   return (
     <>
     <Card className="bg-gradient-to-br from-white/5 to-white/10 border-white/20 transition-all duration-300 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-900/20">
-      <CardContent className="p-4 md:p-5 space-y-4">
+      <CardContent className="p-3 sm:p-4 md:p-5 space-y-3 sm:space-y-4">
         {/* Inmate Info */}
         <div className="flex justify-between items-start gap-3">
           <div className="flex-1 min-w-0">

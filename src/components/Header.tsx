@@ -16,7 +16,7 @@ const Header = ({ selectedState = null }: HeaderProps) => {
 
   return (
     <header className="bg-[#000B2E]/80 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
-      <div className="container mx-auto px-3 sm:px-4 md:px-6 py-3 md:py-4">
+      <div className="mx-auto px-2 sm:px-4 md:px-6 max-w-5xl w-full py-2 sm:py-3 md:py-4">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center space-x-2 md:space-x-3 min-w-0 flex-1">
             {showBackButton && (

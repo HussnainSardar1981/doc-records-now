@@ -65,7 +65,7 @@ const InmateSearch = () => {
 
   return (
     <Card className="bg-gradient-to-br from-white/5 to-white/10 border-white/20 transition-all duration-300">
-      <CardHeader className="pb-3 px-4 md:px-6 pt-4 md:pt-6">
+      <CardHeader className="pb-3 px-3 sm:px-4 md:px-6 pt-3 sm:pt-4 md:pt-6">
         <CardTitle className="text-white text-xl flex items-center gap-2">
           <div className="bg-blue-500/20 p-1.5 rounded-lg">
             <Search className="w-5 h-5 text-blue-400" />
@@ -73,7 +73,7 @@ const InmateSearch = () => {
           Search Inmate
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4 md:space-y-5 px-4 md:px-6 pb-4 md:pb-6">
+      <CardContent className="space-y-4 md:space-y-5 px-3 sm:px-4 md:px-6 pb-3 sm:pb-4 md:pb-6">
         {/* DOC Number Search */}
         <div>
           <Input
