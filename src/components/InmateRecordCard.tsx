@@ -116,7 +116,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
 
   return (
     <>
-    <Card className="bg-gradient-to-br from-white/5 to-white/10 border-white/20 transition-all duration-300 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-900/20">
+    <Card className="bg-gradient-to-br from-white/5 to-white/10 border-white/20 transition-all duration-300 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-900/20 animate-slideUp">
       <CardContent className="p-3 sm:p-4 md:p-5 space-y-3 sm:space-y-4">
         {/* Inmate Info */}
         <div className="flex justify-between items-start gap-3">
@@ -185,7 +185,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
                     <Button
                       size="sm"
                       onClick={() => handleBuyNow('telephone')}
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium"
+                      className="w-full animate-gradient hover:opacity-90 text-white font-medium"
                     >
                       Buy Now
                     </Button>
@@ -227,7 +227,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
                     <Button
                       size="sm"
                       onClick={() => handleBuyNow('visitor')}
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium"
+                      className="w-full animate-gradient hover:opacity-90 text-white font-medium"
                     >
                       Buy Now
                     </Button>
