@@ -153,7 +153,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
                       <Button
                         size="sm"
                         onClick={() => navigate('/my-records', { state: { docNumber, recordType: 'phone' } })}
-                        className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto"
+                        className="bg-blue-600 hover:bg-blue-700 text-white w-full"
                       >
                         View Records
                       </Button>
@@ -196,7 +196,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
                       <Button
                         size="sm"
                         onClick={() => navigate('/my-records', { state: { docNumber, recordType: 'visitor' } })}
-                        className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto"
+                        className="bg-blue-600 hover:bg-blue-700 text-white w-full"
                       >
                         View Records
                       </Button>
