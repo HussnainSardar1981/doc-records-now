@@ -30,7 +30,7 @@ export const BlurredRecordPreview = ({ type, preview }: BlurredRecordPreviewProp
   if (!preview) return null;
 
   const renderPhonePreview = (data: PhonePreview) => (
-    <div className="relative h-full md:min-h-[180px]">
+    <div className="relative max-h-[120px] md:max-h-none md:min-h-[180px] overflow-hidden">
       {/* Blurred Content */}
       <div className="filter blur-sm pointer-events-none select-none overflow-hidden h-full">
         <div className="space-y-2">
@@ -73,7 +73,7 @@ export const BlurredRecordPreview = ({ type, preview }: BlurredRecordPreviewProp
   );
 
   const renderVisitorPreview = (data: VisitorPreview) => (
-    <div className="relative h-full md:min-h-[180px]">
+    <div className="relative max-h-[120px] md:max-h-none md:min-h-[180px] overflow-hidden">
       {/* Blurred Content */}
       <div className="filter blur-sm pointer-events-none select-none overflow-hidden h-full">
         <div className="space-y-2">
