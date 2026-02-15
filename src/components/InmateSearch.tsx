@@ -77,6 +77,8 @@ const InmateSearch = () => {
         {/* DOC Number Search */}
         <div>
           <Input
+            id="docNumber"
+            name="docNumber"
             value={searchType === 'doc' ? state.searchQuery : ''}
             onChange={(e) => handleDocNumberChange(e.target.value)}
             onKeyDown={handleKeyDown}
@@ -95,6 +97,8 @@ const InmateSearch = () => {
         {/* Name Search */}
         <div className="grid grid-cols-2 gap-3">
           <Input
+            id="firstName"
+            name="firstName"
             value={firstName}
             onChange={(e) => handleNameChange(e.target.value, lastName)}
             onKeyDown={handleKeyDown}
@@ -103,6 +107,8 @@ const InmateSearch = () => {
             disabled={state.searchLoading}
           />
           <Input
+            id="lastName"
+            name="lastName"
             value={lastName}
             onChange={(e) => handleNameChange(firstName, e.target.value)}
             onKeyDown={handleKeyDown}

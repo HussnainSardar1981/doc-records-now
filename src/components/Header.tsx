@@ -31,13 +31,13 @@ const Header = ({ selectedState = null }: HeaderProps) => {
               </Button>
             )}
             <Link to="/" className="cursor-pointer">
-              <div className="border-2 border-[#000B2E] bg-white p-1">
+              <div className="border-2 border-[#000B2E] bg-white p-0.5 sm:p-1">
                 <div className="flex items-center gap-0">
-                  <div className="bg-[#000B2E] px-3 py-1.5 md:px-4 md:py-2 border-r border-[#000B2E]">
-                    <span className="text-white font-bold text-sm md:text-base tracking-wide">INMATE</span>
+                  <div className="bg-[#000B2E] px-1.5 py-0.5 sm:px-3 sm:py-1.5 md:px-4 md:py-2 border-r border-[#000B2E]">
+                    <span className="text-white font-bold text-[10px] sm:text-sm md:text-base tracking-wide">INMATE</span>
                   </div>
-                  <div className="bg-white px-3 py-1.5 md:px-4 md:py-2">
-                    <span className="text-black font-bold text-sm md:text-base tracking-wide">INSIGHTS</span>
+                  <div className="bg-white px-1.5 py-0.5 sm:px-3 sm:py-1.5 md:px-4 md:py-2">
+                    <span className="text-black font-bold text-[10px] sm:text-sm md:text-base tracking-wide">INSIGHTS</span>
                   </div>
                 </div>
               </div>
