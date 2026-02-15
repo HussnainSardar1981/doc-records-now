@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#00063d]/60 border-t border-slate-600/50 py-8 mt-12">
+    <footer className="bg-[#000B2E]/80 border-t border-white/10 py-8 mt-12">
       <div className="container mx-auto px-6">
         <div className="text-center">
           <h3 className="text-white text-lg font-semibold mb-4">
@@ -15,7 +15,7 @@ const Footer = () => {
               href="https://x.com/Inmate_insights"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-blue-400 hover:bg-blue-500 flex items-center justify-center transition-all duration-200 hover:scale-110"
+              className="w-10 h-10 rounded-full bg-[#1DA1F2] hover:bg-[#1a8cd8] flex items-center justify-center transition-all duration-200 hover:scale-110"
               aria-label="Twitter/X"
             >
               <Twitter className="w-5 h-5 text-white" />
@@ -25,7 +25,7 @@ const Footer = () => {
               href="https://www.instagram.com/inmateinsights007/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-pink-500 hover:bg-pink-600 flex items-center justify-center transition-all duration-200 hover:scale-110"
+              className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 hover:opacity-90 flex items-center justify-center transition-all duration-200 hover:scale-110"
               aria-label="Instagram"
             >
               <Instagram className="w-5 h-5 text-white" />
@@ -47,17 +47,17 @@ const Footer = () => {
               href="https://www.facebook.com/profile.php?id=61579922447590"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-blue-600 hover:bg-blue-700 flex items-center justify-center transition-all duration-200 hover:scale-110"
+              className="w-10 h-10 rounded-full bg-[#1877F2] hover:bg-[#166FE5] flex items-center justify-center transition-all duration-200 hover:scale-110"
               aria-label="Facebook"
             >
               <Facebook className="w-5 h-5 text-white" />
             </a>
           </div>
 
-          <p className="text-slate-400 text-sm pb-12 sm:pb-0">
+          <p className="text-gray-400 text-sm pb-12 sm:pb-0">
             © 2026 WA DOC Records. All rights reserved.
             {' | '}
-            <Link to="/privacy" className="text-slate-400 hover:text-white transition-colors underline">
+            <Link to="/privacy" className="text-gray-400 hover:text-white transition-colors underline">
               Privacy Policy
             </Link>
           </p>

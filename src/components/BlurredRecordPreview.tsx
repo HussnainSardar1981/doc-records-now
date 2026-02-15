@@ -42,7 +42,7 @@ export const BlurredRecordPreview = ({ type, preview }: BlurredRecordPreviewProp
             {data.top_numbers.map((call, idx) => (
               <div
                 key={idx}
-                className="flex items-center justify-between p-2 bg-blue-500/60 rounded text-sm"
+                className="flex items-center justify-between p-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-white/10 rounded text-sm"
               >
                 <div className="flex items-center gap-2">
                   <Phone className="w-3.5 h-3.5 text-white" />
@@ -62,11 +62,11 @@ export const BlurredRecordPreview = ({ type, preview }: BlurredRecordPreviewProp
       </div>
 
       {/* Lock Overlay */}
-      <div className="absolute inset-0 flex items-center justify-center bg-slate-900/60">
-        <div className="bg-slate-800/95 backdrop-blur-md rounded-lg p-4 border border-slate-600/50 text-center">
+      <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+        <div className="bg-gradient-to-b from-[#0A1F4A] to-[#000B2E] backdrop-blur-md rounded-lg p-4 border border-white/10 text-center">
           <Lock className="w-8 h-8 text-blue-400 mx-auto mb-2" />
           <div className="text-white font-semibold mb-1">Preview</div>
-          <div className="text-xs text-slate-300">Purchase to unlock full records</div>
+          <div className="text-xs text-gray-300">Purchase to unlock full records</div>
         </div>
       </div>
     </div>
@@ -85,7 +85,7 @@ export const BlurredRecordPreview = ({ type, preview }: BlurredRecordPreviewProp
             {data.top_visitors.map((visitor, idx) => (
               <div
                 key={idx}
-                className="p-2 bg-purple-500/60 rounded text-sm"
+                className="p-2 bg-gradient-to-r from-purple-500/10 to-blue-500/10 border border-white/10 rounded text-sm"
               >
                 <div className="flex items-center gap-2 mb-1">
                   <Users className="w-3.5 h-3.5 text-white" />
@@ -105,18 +105,18 @@ export const BlurredRecordPreview = ({ type, preview }: BlurredRecordPreviewProp
       </div>
 
       {/* Lock Overlay */}
-      <div className="absolute inset-0 flex items-center justify-center bg-slate-900/60">
-        <div className="bg-slate-800/95 backdrop-blur-md rounded-lg p-4 border border-slate-600/50 text-center">
+      <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+        <div className="bg-gradient-to-b from-[#0A1F4A] to-[#000B2E] backdrop-blur-md rounded-lg p-4 border border-white/10 text-center">
           <Lock className="w-8 h-8 text-purple-400 mx-auto mb-2" />
           <div className="text-white font-semibold mb-1">Preview</div>
-          <div className="text-xs text-slate-300">Purchase to unlock full records</div>
+          <div className="text-xs text-gray-300">Purchase to unlock full records</div>
         </div>
       </div>
     </div>
   );
 
   return (
-    <Card className="bg-slate-800/20 border-slate-700/50 mt-2">
+    <Card className="bg-black/20 border-white/10 mt-2">
       <CardContent className="p-3">
         {type === 'phone' && renderPhonePreview(preview as PhonePreview)}
         {type === 'visitor' && renderVisitorPreview(preview as VisitorPreview)}

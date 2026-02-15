@@ -79,13 +79,13 @@ const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="bg-slate-800/95 backdrop-blur-xl border-slate-700/50 text-white w-[calc(100%-2rem)] max-w-md p-6 sm:p-8 rounded-2xl shadow-2xl"
+        className="bg-gradient-to-b from-[#0F2350] to-[#000B2E] backdrop-blur-xl border-white/20 text-white w-[calc(100%-2rem)] max-w-md p-6 sm:p-8 rounded-2xl shadow-2xl"
         aria-describedby={undefined}
       >
         <DialogTitle className="text-center text-2xl sm:text-3xl font-bold text-white mb-1">
           {mode === 'login' ? 'Welcome Back' : 'Create Account'}
         </DialogTitle>
-        <p className="text-center text-slate-400 text-sm mb-4">
+        <p className="text-center text-gray-400 text-sm mb-4">
           {mode === 'login' ? 'Sign in to your account' : 'Sign up to get started'}
         </p>
 
@@ -118,30 +118,30 @@ const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
 
         <div className="relative my-4">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-slate-600"></div>
+            <div className="w-full border-t border-white/10"></div>
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-4 bg-slate-800/95 text-slate-400">or continue with email</span>
+            <span className="px-4 bg-[#0A1A3E] text-gray-400">or continue with email</span>
           </div>
         </div>
 
         <form onSubmit={mode === 'login' ? handleLogin : handleSignup} className="space-y-4">
           {mode === 'signup' && (
             <div className="space-y-2">
-              <Label htmlFor="modal-name" className="text-slate-200">Full Name</Label>
+              <Label htmlFor="modal-name" className="text-gray-300">Full Name</Label>
               <Input
                 id="modal-name"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="Enter your full name"
                 required
-                className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all"
+                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all"
               />
             </div>
           )}
 
           <div className="space-y-2">
-            <Label htmlFor="modal-email" className="text-slate-200">Email</Label>
+            <Label htmlFor="modal-email" className="text-gray-300">Email</Label>
             <Input
               id="modal-email"
               type="email"
@@ -149,12 +149,12 @@ const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               required
-              className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all"
+              className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all"
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="modal-password" className="text-slate-200">Password</Label>
+            <Label htmlFor="modal-password" className="text-gray-300">Password</Label>
             <Input
               id="modal-password"
               type="password"
@@ -162,13 +162,13 @@ const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
               required
-              className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all"
+              className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all"
             />
           </div>
 
           {mode === 'signup' && (
             <div className="space-y-2">
-              <Label htmlFor="modal-confirm" className="text-slate-200">Confirm Password</Label>
+              <Label htmlFor="modal-confirm" className="text-gray-300">Confirm Password</Label>
               <Input
                 id="modal-confirm"
                 type="password"
@@ -176,7 +176,7 @@ const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="Confirm your password"
                 required
-                className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all"
+                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all"
               />
             </div>
           )}
@@ -191,7 +191,7 @@ const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
         </form>
 
         <div className="text-center mt-2">
-          <p className="text-slate-400 text-sm">
+          <p className="text-gray-400 text-sm">
             {mode === 'login' ? "Don't have an account? " : "Already have an account? "}
             <button
               type="button"

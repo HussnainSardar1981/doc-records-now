@@ -78,10 +78,10 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
     if (!recordAvailability) return null;
 
     if (recordAvailability.available) {
-      return <Badge className="bg-green-600 text-xs">Available Now</Badge>;
+      return <Badge className="bg-green-500/20 text-green-400 border border-green-500/30 text-xs">Available Now</Badge>;
     } else if (recordAvailability.available_date) {
       const date = new Date(recordAvailability.available_date).toLocaleDateString();
-      return <Badge className="bg-yellow-600 text-xs">Available {date}</Badge>;
+      return <Badge className="bg-yellow-500/20 text-yellow-300 border border-yellow-500/30 text-xs">Available {date}</Badge>;
     } else {
       return (
         <div className="text-sm font-medium text-yellow-200 bg-yellow-900/30 px-2 py-1 rounded">
@@ -93,13 +93,13 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
 
   return (
     <>
-    <Card className="bg-slate-800/40 border-slate-600/50 transition-all duration-300 hover:border-slate-500/70 hover:shadow-lg hover:shadow-blue-900/20">
+    <Card className="bg-gradient-to-br from-white/5 to-white/10 border-white/20 transition-all duration-300 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-900/20">
       <CardContent className="p-4 space-y-4">
         {/* Inmate Info */}
         <div className="flex justify-between items-start gap-3">
           <div className="flex-1 min-w-0">
             <h3 className="text-white font-semibold text-lg break-words">{name}</h3>
-            <div className="flex flex-wrap gap-2 sm:gap-3 mt-2 text-xs sm:text-sm text-slate-300">
+            <div className="flex flex-wrap gap-2 sm:gap-3 mt-2 text-xs sm:text-sm text-gray-300">
               <div className="flex items-center gap-1">
                 <Hash className="w-3.5 h-3.5 flex-shrink-0" />
                 <span>{docNumber}</span>
@@ -111,17 +111,17 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
               {age && <span className="whitespace-nowrap">Age {age}</span>}
             </div>
           </div>
-          <Badge variant={status === 'In Custody' ? 'destructive' : 'secondary'} className="flex-shrink-0 text-xs">
+          <Badge variant={status === 'In Custody' ? 'destructive' : 'secondary'} className={`flex-shrink-0 text-xs ${status === 'In Custody' ? 'bg-red-500/20 text-red-300 border border-red-500/30' : ''}`}>
             {status}
           </Badge>
         </div>
 
         {/* Available Records */}
-        <div className="border-t border-slate-600 pt-4">
+        <div className="border-t border-white/10 pt-4">
           <div className="flex items-center justify-between mb-3">
-            <h4 className="text-slate-300 text-sm font-medium">Available Records</h4>
+            <h4 className="text-gray-300 text-sm font-medium">Available Records</h4>
             {(availability?.phone_records?.already_purchased || availability?.visitor_records?.already_purchased) && (
-              <Badge className="bg-emerald-600 text-xs">Already Purchased</Badge>
+              <Badge className="bg-green-500/20 text-green-300 border border-green-500/30 text-xs">Already Purchased</Badge>
             )}
           </div>
 
@@ -133,9 +133,11 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
             <div className="flex flex-col md:flex-row gap-2">
               {/* Phone Records */}
               <div className="flex-1">
-                <div className="p-3 bg-slate-800/50 rounded-lg space-y-3">
+                <div className="p-3 bg-gradient-to-br from-[#0A1F4A] to-[#000B2E] rounded-lg border border-white/10 space-y-3">
                   <div className="flex items-center gap-3">
-                    <Phone className="w-5 h-5 text-blue-400 flex-shrink-0" />
+                    <div className="bg-blue-500/20 p-1.5 rounded-lg">
+                      <Phone className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                    </div>
                     <div className="flex-1">
                       <div className="text-white font-medium">Phone Records</div>
                       {availability?.phone_records && (
@@ -151,7 +153,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
                       <Button
                         size="sm"
                         onClick={() => navigate('/my-records', { state: { docNumber, recordType: 'phone' } })}
-                        className="bg-[#00063d] hover:bg-[#0a1854] w-full sm:w-auto"
+                        className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto"
                       >
                         View Records
                       </Button>
@@ -160,7 +162,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
                         size="sm"
                         onClick={() => handleToggleRecord('telephone')}
                         variant={isPhoneSelected ? 'secondary' : 'default'}
-                        className={`w-full sm:w-auto ${isPhoneSelected ? 'bg-green-600 hover:bg-green-700 !text-white' : ''}`}
+                        className={`w-full sm:w-auto ${isPhoneSelected ? 'bg-green-600 hover:bg-green-700 !text-white' : 'bg-white text-[#000B2E] hover:bg-gray-100'}`}
                       >
                         {isPhoneSelected ? 'Selected' : 'Select'}
                       </Button>
@@ -174,9 +176,11 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
 
               {/* Visitor Records */}
               <div className="flex-1">
-                <div className="p-3 bg-slate-800/50 rounded-lg space-y-3">
+                <div className="p-3 bg-gradient-to-br from-[#0A1F4A] to-[#000B2E] rounded-lg border border-white/10 space-y-3">
                   <div className="flex items-center gap-3">
-                    <Users className="w-5 h-5 text-purple-400 flex-shrink-0" />
+                    <div className="bg-purple-500/20 p-1.5 rounded-lg">
+                      <Users className="w-4 h-4 text-purple-400 flex-shrink-0" />
+                    </div>
                     <div className="flex-1">
                       <div className="text-white font-medium">Visitor Records</div>
                       {availability?.visitor_records && (
@@ -192,7 +196,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
                       <Button
                         size="sm"
                         onClick={() => navigate('/my-records', { state: { docNumber, recordType: 'visitor' } })}
-                        className="bg-[#00063d] hover:bg-[#0a1854] w-full sm:w-auto"
+                        className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto"
                       >
                         View Records
                       </Button>
@@ -201,7 +205,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
                         size="sm"
                         onClick={() => handleToggleRecord('visitor')}
                         variant={isVisitorSelected ? 'secondary' : 'default'}
-                        className={`w-full sm:w-auto ${isVisitorSelected ? 'bg-green-600 hover:bg-green-700 !text-white' : ''}`}
+                        className={`w-full sm:w-auto ${isVisitorSelected ? 'bg-green-600 hover:bg-green-700 !text-white' : 'bg-white text-[#000B2E] hover:bg-gray-100'}`}
                       >
                         {isVisitorSelected ? 'Selected' : 'Select'}
                       </Button>
@@ -218,15 +222,15 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
 
         {/* Checkout Section */}
         {hasSelection && (
-          <div className="border-t border-slate-600 pt-4">
+          <div className="border-t border-white/10 pt-4">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-slate-300">Total</span>
+              <span className="text-gray-300">Total</span>
               <span className="text-white text-xl font-bold">${calculateTotal().toFixed(2)}</span>
             </div>
             <Button
               onClick={handleCheckout}
               disabled={isProcessing}
-              className="w-full bg-[#00063d] hover:bg-[#0a1854] text-white font-semibold py-6 text-lg"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-6 text-lg"
             >
               {isProcessing ? (
                 <>

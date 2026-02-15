@@ -8,7 +8,7 @@ interface LoadingCardProps {
 
 export const LoadingCard = ({ title, rows = 3 }: LoadingCardProps) => {
   return (
-    <Card className="bg-slate-800/50 border-slate-700 animate-in fade-in duration-200">
+    <Card className="bg-white/5 border-white/10 animate-in fade-in duration-200">
       <CardHeader>
         {title ? (
           <Skeleton className="h-6 w-48" />

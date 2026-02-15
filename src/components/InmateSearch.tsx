@@ -64,10 +64,12 @@ const InmateSearch = () => {
   };
 
   return (
-    <Card className="bg-slate-800/40 border-slate-600/50 transition-all duration-300 hover:border-slate-500/70">
+    <Card className="bg-gradient-to-br from-white/5 to-white/10 border-white/20 transition-all duration-300">
       <CardHeader className="pb-3">
         <CardTitle className="text-white text-xl flex items-center gap-2">
-          <Search className="w-5 h-5" />
+          <div className="bg-blue-500/20 p-1.5 rounded-lg">
+            <Search className="w-5 h-5 text-blue-400" />
+          </div>
           Search Inmate
         </CardTitle>
       </CardHeader>
@@ -79,15 +81,15 @@ const InmateSearch = () => {
             onChange={(e) => handleDocNumberChange(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="DOC Number (e.g., 885671)"
-            className="bg-slate-700/50 border-slate-500 text-white placeholder:text-slate-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 transition-all"
+            className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all"
             disabled={state.searchLoading}
           />
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="flex-1 h-px bg-slate-500"></div>
-          <span className="text-slate-300 text-xs">OR</span>
-          <div className="flex-1 h-px bg-slate-500"></div>
+          <div className="flex-1 h-px bg-white/10"></div>
+          <span className="text-gray-400 text-xs">OR</span>
+          <div className="flex-1 h-px bg-white/10"></div>
         </div>
 
         {/* Name Search */}
@@ -97,7 +99,7 @@ const InmateSearch = () => {
             onChange={(e) => handleNameChange(e.target.value, lastName)}
             onKeyDown={handleKeyDown}
             placeholder="First Name"
-            className="bg-slate-700/50 border-slate-500 text-white placeholder:text-slate-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 transition-all"
+            className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all"
             disabled={state.searchLoading}
           />
           <Input
@@ -105,7 +107,7 @@ const InmateSearch = () => {
             onChange={(e) => handleNameChange(firstName, e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Last Name"
-            className="bg-slate-700/50 border-slate-500 text-white placeholder:text-slate-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 transition-all"
+            className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all"
             disabled={state.searchLoading}
           />
         </div>

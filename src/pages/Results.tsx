@@ -17,7 +17,7 @@ const Results = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#00063d] to-[#0a1854] flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-[#000B2E] via-[#001855] to-[#000B2E] flex flex-col relative overflow-hidden">
       <Header selectedState={state.selectedState} />
 
       <div className="container mx-auto px-4 md:px-6 py-6 max-w-4xl flex-1 animate-fadeIn">

@@ -43,7 +43,7 @@ const UserMenu = () => {
         <Button 
           variant="outline" 
           size="sm" 
-          className="bg-white/10 text-white border-white/30 hover:bg-white/20 hover:text-white"
+          className="bg-white/10 text-white border-white/20 hover:bg-white/20 hover:text-white"
         >
           Sign In
         </Button>
@@ -59,17 +59,17 @@ const UserMenu = () => {
           Account
         </Button>
       </SheetTrigger>
-      <SheetContent className="bg-slate-900 border-slate-700">
+      <SheetContent className="bg-[#000B2E] border-white/10">
         <SheetHeader>
           <SheetTitle className="text-white">Account</SheetTitle>
-          <SheetDescription className="text-slate-400">
+          <SheetDescription className="text-gray-400">
             Manage your account settings
           </SheetDescription>
         </SheetHeader>
-        
+
         <div className="mt-6 space-y-4">
-          <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700/50">
-            <p className="text-sm text-slate-400">Email</p>
+          <div className="p-4 bg-white/5 rounded-lg border border-white/10">
+            <p className="text-sm text-gray-400">Email</p>
             <p className="text-white font-medium">{user.email}</p>
           </div>
 

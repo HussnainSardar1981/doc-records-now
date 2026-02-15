@@ -29,9 +29,9 @@ const SearchResults = ({ results, loading, error, query, selectedState }: Search
 
   if (error) {
     return (
-      <Alert className="bg-red-900/20 border-red-500">
-        <AlertCircle className="h-4 w-4" />
-        <AlertDescription className="text-red-200">
+      <Alert className="bg-red-500/10 border-red-500/20">
+        <AlertCircle className="h-4 w-4 text-red-400" />
+        <AlertDescription className="text-red-300">
           {error}
         </AlertDescription>
       </Alert>
