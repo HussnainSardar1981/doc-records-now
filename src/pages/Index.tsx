@@ -17,7 +17,7 @@ const Index = () => {
 
       <Header selectedState={state.selectedState} />
 
-      <div className="mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-3 md:py-6 max-w-5xl w-full flex-1 flex flex-col md:justify-center animate-fadeIn relative z-10">
+      <div className="mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-3 md:py-6 max-w-5xl w-full md:flex-1 flex flex-col md:justify-center animate-fadeIn relative z-10">
         <Alert className="mb-4 bg-blue-500/10 border-blue-500/20">
           <Info className="h-4 w-4 text-blue-400" />
           <AlertDescription className="text-blue-300">
