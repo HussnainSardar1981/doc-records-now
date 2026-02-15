@@ -119,6 +119,19 @@
   animation: slideUp 0.6s ease-out forwards;
 }
 
+/* Animated gradient for CTA buttons */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background: linear-gradient(270deg, #2563eb, #7c3aed, #2563eb);
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
 /* Staggered animations for children */
 .animate-stagger > *:nth-child(1) { animation-delay: 0.05s; }
 .animate-stagger > *:nth-child(2) { animation-delay: 0.1s; }

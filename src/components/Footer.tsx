@@ -70,7 +70,7 @@ const Footer = () => {
           </div>
 
           <p className="text-gray-400 text-xs sm:text-sm pb-0">
-            © 2026 WA DOC Records. All rights reserved.
+            © 2026 Inmate Insights. All rights reserved.
             {' | '}
             <Link to="/privacy" className="text-gray-400 hover:text-white transition-colors underline">
               Privacy Policy
