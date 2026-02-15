@@ -1,10 +1,25 @@
-import { Facebook, Instagram, Twitter } from 'lucide-react';
+import { Facebook, Instagram, Twitter, MessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 const Footer = () => {
+  const openFeedback = () => {
+    window.dispatchEvent(new Event('open-feedback'));
+  };
+
   return (
     <footer className="bg-[#000B2E]/80 border-t border-white/10 py-3 sm:py-4 md:py-8 mt-auto">
       <div className="mx-auto px-3 sm:px-6 max-w-5xl w-full">
+        <div className="flex sm:hidden justify-center mb-3">
+          <Button
+            onClick={openFeedback}
+            className="rounded-full bg-[#00063d] hover:bg-[#0a1854] shadow-lg px-5 py-3 h-auto"
+            aria-label="Send feedback"
+          >
+            <MessageSquare className="h-4 w-4 text-white mr-2" />
+            <span className="text-white font-medium text-sm">Feedback</span>
+          </Button>
+        </div>
         <div className="text-center">
           <h3 className="text-white text-sm sm:text-lg font-semibold mb-2 sm:mb-4">
             FOLLOW US ON SOCIAL MEDIA

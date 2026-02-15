@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -6,7 +6,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import {
   Dialog,
-  DialogTrigger,
   DialogContent,
   DialogHeader,
   DialogTitle,
@@ -21,6 +20,12 @@ const FloatingFeedbackButton = () => {
   const [customerEmail, setCustomerEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+
+  useEffect(() => {
+    const handleOpen = () => setIsOpen(true);
+    window.addEventListener('open-feedback', handleOpen);
+    return () => window.removeEventListener('open-feedback', handleOpen);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,17 +72,17 @@ const FloatingFeedbackButton = () => {
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
-        <Button
-          className="fixed bottom-6 right-6 z-50 rounded-full bg-[#00063d] hover:bg-[#0a1854] shadow-lg px-5 py-3 h-auto"
-          aria-label="Send feedback"
-        >
-          <MessageSquare className="h-5 w-5 text-white mr-2" />
-          <span className="text-white font-medium">Feedback</span>
-        </Button>
-      </DialogTrigger>
+    <>
+      <Button
+        onClick={() => setIsOpen(true)}
+        className="hidden sm:flex fixed bottom-6 right-6 z-50 rounded-full bg-[#00063d] hover:bg-[#0a1854] shadow-lg px-5 py-3 h-auto"
+        aria-label="Send feedback"
+      >
+        <MessageSquare className="h-5 w-5 text-white mr-2" />
+        <span className="text-white font-medium">Feedback</span>
+      </Button>
 
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="bg-[#0a1854] border-slate-700 text-white sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-white text-lg">Send Us Feedback</DialogTitle>
@@ -135,6 +140,7 @@ const FloatingFeedbackButton = () => {
         </form>
       </DialogContent>
     </Dialog>
+    </>
   );
 };
 
