@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import InmateSearch from '@/components/InmateSearch';
 import { useAppState } from '@/contexts/AppStateContext';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Info, Shield, Clock, FileText } from 'lucide-react';
+import { Info } from 'lucide-react';
 
 const Index = () => {
   const { state } = useAppState();
@@ -18,31 +18,6 @@ const Index = () => {
       <Header selectedState={state.selectedState} />
 
       <div className="container mx-auto px-4 md:px-6 py-6 max-w-4xl flex-1 animate-fadeIn relative z-10">
-        <div className="text-center mb-8 animate-fadeIn">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">
-            Access Washington State
-            <span className="block text-blue-400">DOC Records Instantly</span>
-          </h1>
-          <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto mb-6">
-            Search inmate phone records and visitor logs from the Washington Department of Corrections. Fast, secure, and reliable.
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-8">
-            <div className="flex items-center gap-2 text-gray-300 text-sm">
-              <Shield className="w-4 h-4 text-blue-400" />
-              <span>Secure & Private</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-300 text-sm">
-              <Clock className="w-4 h-4 text-blue-400" />
-              <span>Instant Access</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-300 text-sm">
-              <FileText className="w-4 h-4 text-blue-400" />
-              <span>PDF Reports</span>
-            </div>
-          </div>
-        </div>
-
         <Alert className="mb-6 bg-blue-500/10 border-blue-500/20">
           <Info className="h-4 w-4 text-blue-400" />
           <AlertDescription className="text-blue-300">
