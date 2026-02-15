@@ -26,8 +26,8 @@ const Header = ({ selectedState = null }: HeaderProps) => {
                 size="sm"
                 className="text-gray-300 hover:text-white hover:bg-white/10"
               >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Search
+                <ArrowLeft className="w-4 h-4 sm:mr-2" />
+                <span className="hidden sm:inline">Back to Search</span>
               </Button>
             )}
             <Link to="/" className="cursor-pointer">
