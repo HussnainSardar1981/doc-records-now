@@ -9,6 +9,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useOrderForm } from '@/hooks/useOrderForm';
 import { BlurredRecordPreview } from './BlurredRecordPreview';
+import AuthModal from './AuthModal';
 
 interface InmateRecordCardProps {
   name: string;
@@ -27,6 +28,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
   const { handleOrder } = useOrderForm();
   const [availability, setAvailability] = useState<any>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   useEffect(() => {
     const fetchAvailability = async () => {
@@ -56,7 +58,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
 
   const handleCheckout = async () => {
     if (!user) {
-      navigate('/login', { state: { from: currentLocation } });
+      setShowAuthModal(true);
       return;
     }
 
@@ -90,7 +92,8 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
   };
 
   return (
-    <Card className="bg-slate-800/40 border-slate-600/50">
+    <>
+    <Card className="bg-slate-800/40 border-slate-600/50 transition-all duration-300 hover:border-slate-500/70 hover:shadow-lg hover:shadow-blue-900/20">
       <CardContent className="p-4 space-y-4">
         {/* Inmate Info */}
         <div className="flex justify-between items-start gap-3">
@@ -246,5 +249,7 @@ export const InmateRecordCard = ({ name, docNumber, location, status, age }: Inm
         )}
       </CardContent>
     </Card>
+    <AuthModal open={showAuthModal} onOpenChange={setShowAuthModal} />
+    </>
   );
 };

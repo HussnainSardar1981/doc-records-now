@@ -62,7 +62,7 @@ const SearchButton = ({ selectedState, searchQuery, onSearch, loading = false }:
   return (
     <Button
       onClick={handleSearch}
-      className="w-full bg-[#00063d] hover:bg-[#0a1854] text-white"
+      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-5 text-base transition-all duration-200 hover:shadow-lg hover:shadow-blue-600/25"
       disabled={!isValidQuery || loading}
     >
       {loading ? (

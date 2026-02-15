@@ -63,7 +63,7 @@ const InmateSearch = () => {
 
   return (
     <div className="space-y-4">
-      <Card className="bg-slate-800/40 border-slate-600/50">
+      <Card className="bg-slate-800/40 border-slate-600/50 transition-all duration-300 hover:border-slate-500/70">
         <CardHeader className="pb-3">
           <CardTitle className="text-white text-xl flex items-center gap-2">
             <Search className="w-5 h-5" />
@@ -78,7 +78,7 @@ const InmateSearch = () => {
               onChange={(e) => handleDocNumberChange(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="DOC Number (e.g., 885671)"
-              className="bg-slate-700/50 border-slate-500 text-white placeholder:text-slate-300"
+              className="bg-slate-700/50 border-slate-500 text-white placeholder:text-slate-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 transition-all"
               disabled={state.searchLoading}
             />
           </div>
@@ -96,7 +96,7 @@ const InmateSearch = () => {
               onChange={(e) => handleNameChange(e.target.value, lastName)}
               onKeyDown={handleKeyDown}
               placeholder="First Name"
-              className="bg-slate-700/50 border-slate-500 text-white placeholder:text-slate-300"
+              className="bg-slate-700/50 border-slate-500 text-white placeholder:text-slate-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 transition-all"
               disabled={state.searchLoading}
             />
             <Input
@@ -104,7 +104,7 @@ const InmateSearch = () => {
               onChange={(e) => handleNameChange(firstName, e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Last Name"
-              className="bg-slate-700/50 border-slate-500 text-white placeholder:text-slate-300"
+              className="bg-slate-700/50 border-slate-500 text-white placeholder:text-slate-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 transition-all"
               disabled={state.searchLoading}
             />
           </div>
