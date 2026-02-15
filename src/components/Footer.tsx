@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#000B2E]/80 border-t border-white/10 py-3 sm:py-4 md:py-8">
+    <footer className="bg-[#000B2E]/80 border-t border-white/10 py-3 sm:py-4 md:py-8 mt-auto">
       <div className="mx-auto px-3 sm:px-6 max-w-5xl w-full">
         <div className="text-center">
           <h3 className="text-white text-sm sm:text-lg font-semibold mb-2 sm:mb-4">
@@ -54,7 +54,7 @@ const Footer = () => {
             </a>
           </div>
 
-          <p className="text-gray-400 text-xs sm:text-sm pb-12 sm:pb-0">
+          <p className="text-gray-400 text-xs sm:text-sm pb-0">
             © 2026 WA DOC Records. All rights reserved.
             {' | '}
             <Link to="/privacy" className="text-gray-400 hover:text-white transition-colors underline">
