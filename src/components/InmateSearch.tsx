@@ -116,7 +116,7 @@ const InmateSearch = () => {
         </div>
 
         {/* Name Search */}
-        <div className="flex gap-2 sm:gap-3">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3">
           <Input
             id="firstName"
             name="firstName"
@@ -124,7 +124,7 @@ const InmateSearch = () => {
             onChange={(e) => handleNameChange(e.target.value, middleInitial, lastName)}
             onKeyDown={handleKeyDown}
             placeholder="First Name"
-            className="flex-1 bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all"
+            className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all"
             disabled={state.searchLoading}
           />
           <Input
@@ -133,9 +133,9 @@ const InmateSearch = () => {
             value={middleInitial}
             onChange={(e) => handleNameChange(firstName, e.target.value.slice(0, 2).toUpperCase(), lastName)}
             onKeyDown={handleKeyDown}
-            placeholder="MI"
+            placeholder="Middle Initial"
             maxLength={2}
-            className="w-14 sm:w-16 text-center bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all"
+            className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all"
             disabled={state.searchLoading}
           />
           <Input
@@ -145,7 +145,7 @@ const InmateSearch = () => {
             onChange={(e) => handleNameChange(firstName, middleInitial, e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Last Name"
-            className="flex-1 bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all"
+            className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all"
             disabled={state.searchLoading}
           />
         </div>
