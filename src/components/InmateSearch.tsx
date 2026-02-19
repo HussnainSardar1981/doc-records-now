@@ -29,6 +29,7 @@ const InmateSearch = () => {
     : '';
 
   const [firstName, setFirstName] = useState(parsedFirst);
+  const [middleInitial, setMiddleInitial] = useState('');
   const [lastName, setLastName] = useState(parsedLast);
   const [searchType, setSearchType] = useState<'doc' | 'name'>(isPersistedName ? 'name' : 'doc');
 
@@ -41,11 +42,17 @@ const InmateSearch = () => {
     }
   };
 
-  const handleNameChange = (first: string, last: string) => {
+  const buildNameQuery = (first: string, mi: string, last: string) => {
+    const fullFirst = mi ? `${first} ${mi}`.trim() : first;
+    return last && fullFirst ? `${last}, ${fullFirst}` : `${fullFirst} ${last}`.trim();
+  };
+
+  const handleNameChange = (first: string, mi: string, last: string) => {
     setFirstName(first);
+    setMiddleInitial(mi);
     setLastName(last);
 
-    const nameQuery = last && first ? `${last}, ${first}` : `${first} ${last}`.trim();
+    const nameQuery = buildNameQuery(first, mi, last);
     updateSearchState({ searchQuery: nameQuery, inmateId: nameQuery });
     setSearchType('name');
 
@@ -64,6 +71,7 @@ const InmateSearch = () => {
 
   const handleReset = () => {
     setFirstName('');
+    setMiddleInitial('');
     setLastName('');
     setSearchType('doc');
     updateSearchState({ searchQuery: '', inmateId: '' });
@@ -108,25 +116,36 @@ const InmateSearch = () => {
         </div>
 
         {/* Name Search */}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="flex gap-2 sm:gap-3">
           <Input
             id="firstName"
             name="firstName"
             value={firstName}
-            onChange={(e) => handleNameChange(e.target.value, lastName)}
+            onChange={(e) => handleNameChange(e.target.value, middleInitial, lastName)}
             onKeyDown={handleKeyDown}
             placeholder="First Name"
-            className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all"
+            className="flex-1 bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all"
+            disabled={state.searchLoading}
+          />
+          <Input
+            id="middleInitial"
+            name="middleInitial"
+            value={middleInitial}
+            onChange={(e) => handleNameChange(firstName, e.target.value.slice(0, 2).toUpperCase(), lastName)}
+            onKeyDown={handleKeyDown}
+            placeholder="MI"
+            maxLength={2}
+            className="w-14 sm:w-16 text-center bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all"
             disabled={state.searchLoading}
           />
           <Input
             id="lastName"
             name="lastName"
             value={lastName}
-            onChange={(e) => handleNameChange(firstName, e.target.value)}
+            onChange={(e) => handleNameChange(firstName, middleInitial, e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Last Name"
-            className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all"
+            className="flex-1 bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all"
             disabled={state.searchLoading}
           />
         </div>
