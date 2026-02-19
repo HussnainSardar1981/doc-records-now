@@ -11,13 +11,26 @@ import { useAppState } from '@/contexts/AppStateContext';
 import { trackSearch } from '@/utils/pixelTracking';
 
 const InmateSearch = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [searchType, setSearchType] = useState<'doc' | 'name'>('doc');
   const navigate = useNavigate();
-
   const { searchInmates } = useInmateSearchResults();
   const { state, updateSearchState, updateSearchResults, clearSearchResults } = useAppState();
+
+  // Detect if the persisted query is a name or DOC number
+  const isPersistedName = state.searchQuery && !/^\d+$/.test(state.searchQuery.trim());
+  const parsedFirst = isPersistedName
+    ? (state.searchQuery.includes(',')
+        ? state.searchQuery.split(',')[1]?.trim()
+        : state.searchQuery.split(' ')[0]?.trim()) || ''
+    : '';
+  const parsedLast = isPersistedName
+    ? (state.searchQuery.includes(',')
+        ? state.searchQuery.split(',')[0]?.trim()
+        : state.searchQuery.split(' ').slice(1).join(' ')?.trim()) || ''
+    : '';
+
+  const [firstName, setFirstName] = useState(parsedFirst);
+  const [lastName, setLastName] = useState(parsedLast);
+  const [searchType, setSearchType] = useState<'doc' | 'name'>(isPersistedName ? 'name' : 'doc');
 
   const handleDocNumberChange = (value: string) => {
     updateSearchState({ searchQuery: value, inmateId: value });
